@@ -4,11 +4,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-abc-labs-header',
-  templateUrl: './abc-labs-header.component.html',
-  styleUrls: ['./abc-labs-header.component.scss']
+  selector: 'app-atrocel-hris-header',
+  templateUrl: './atrocel-hris-header.component.html',
+  styleUrls: ['./atrocel-hris-header.component.scss']
 })
-export class AbcLabsHeaderComponent implements OnInit {
+export class AltrocelHRISHeaderComponent implements OnInit {
 
   
   public patientEditModal: BsModalRef;

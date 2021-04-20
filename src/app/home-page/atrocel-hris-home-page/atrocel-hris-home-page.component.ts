@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-abc-labs-home-page',
-  templateUrl: './abc-labs-home-page.component.html',
-  styleUrls: ['./abc-labs-home-page.component.scss']
+  selector: 'app-atrocel-hris-home-page',
+  templateUrl: './atrocel-hris-home-page.component.html',
+  styleUrls: ['./atrocel-hris-home-page.component.scss']
 })
 export class AbcLabsHomePageComponent implements OnInit {
 
