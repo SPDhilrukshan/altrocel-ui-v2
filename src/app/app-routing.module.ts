@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AbcLabsHomePageComponent } from './home-page/abc-labs-home-page/abc-labs-home-page.component';
+import { AbcLabsHomePageComponent } from './home-page/atrocel-hris-home-page/atrocel-hris-home-page.component';
 import { HomePageModule } from './home-page/home-page.module';
 import { PermissionGuard } from './authenticate-logged-user.guard';
 import { LoginPageComponent } from './login-page/login-page.component';

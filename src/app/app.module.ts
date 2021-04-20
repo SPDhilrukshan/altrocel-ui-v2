@@ -13,18 +13,18 @@ import { CollapseModule } from "ngx-bootstrap/collapse";
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
-import { RegisterEmployeesComponent } from "../app/home-page/abc-labs-home-page/register-employees/register-employees.component";
-// import { AbcLabsHeaderComponent } from './abc-labs-header/abc-labs-header.component';
+import { RegisterEmployeesComponent } from "../app/home-page/atrocel-hris-home-page/register-employees/register-employees.component";
+// import { AltrocelHRISHeaderComponent } from './atrocel-hris-header/atrocel-hris-header.component';
 import { HomePageModule } from "./home-page/home-page.module";
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    // AbcLabsHeaderComponent,
+    // AltrocelHRISHeaderComponent,
     // AbcLabsFooterComponent,
     // AbcLabsRegisterPatientsComponent,
     // RegisterEmployeesComponent,
-    // AbcLabsHeaderComponent
+    // AltrocelHRISHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,7 @@ import { HomePageModule } from "./home-page/home-page.module";
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterEmployeesComponent,
-    // AbcLabsHeaderComponent
+    // AltrocelHRISHeaderComponent
   ]
 })
 export class AppModule { }
