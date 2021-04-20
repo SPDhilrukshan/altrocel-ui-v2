@@ -20,30 +20,9 @@ export class Employee {
 
   }
 }
-
-export class EmployeeGridDAO {
-  userId: any;
-  employeeName: any;
-  staffType: any;
-  email: any;
-  nic: any;
-  contactNumber: any;
-  gender: any;
-  maritalStatus: any;
-  nationality: any;
-  address: any;
-  dateOfBirth: any;
-
-  constructor() {
-
-  }
-}
-
-export class EmployeeStatusUpdateDAO {
+export class EmployeeLoginInformation {
+  employeeLoginId: any;
   employeeId: any;
-  employeeStatus: any;
-
-  constructor() {
-
-  }
+  password: any;
+  username: any;
 }

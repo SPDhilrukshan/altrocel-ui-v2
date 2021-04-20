@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private router: Router,
-    private altrocelServices: AltrocelServices,
+    private AltrocelServices: AltrocelServices,
     private modalService: BsModalService,
   ) { }
 
@@ -65,7 +65,7 @@ export class LoginPageComponent implements OnInit {
         this.loggedIn.emit();
         this.router.navigateByUrl("/dashboard");
       }else{
-        this.altrocelServices.authenticateLogin(username, password).subscribe(res => {
+        this.AltrocelServices.authenticateLogin(username, password).subscribe(res => {
           if (res == LoginResponseStatus.LOGIN_SUCCESS) {
             localStorage.setItem("loggedUserName", username);
             //get staff type for  header
@@ -97,7 +97,7 @@ export class LoginPageComponent implements OnInit {
       }
     // } else if (username && password && userType == 'PATIENT') {
     //   // network call to login patient
-    //   this.altrocelServices.authenticatePatientLogin(username, password).subscribe(res => {
+    //   this.AltrocelServices.authenticatePatientLogin(username, password).subscribe(res => {
     //     if (res) {
     //       let logUser = Object.assign(res);
     //       localStorage.setItem("loggedUserName", username);
