@@ -11,10 +11,10 @@
 
         <div *ngIf="userType != 'PATIENT'" [ngClass]="{'side-nav-row-selected' : tabName == 'PATIENTS', 'side-nav-row' : tabName != 'PATIENTS'}" (click)="tabClicked('PATIENTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'PATIENTS', 'sidebar-text' : tabName != 'PATIENTS'}"> 
-                PATIENTS
+                Register Employees
              </label>
         </div>
-        <div *ngIf="userType != 'PATIENT'" [ngClass]="{'side-nav-row-selected' : tabName == 'EMPLOYEES', 'side-nav-row' : tabName != 'EMPLOYEES'}" (click)="tabClicked('EMPLOYEES')">
+        <!-- <div *ngIf="userType != 'PATIENT'" [ngClass]="{'side-nav-row-selected' : tabName == 'EMPLOYEES', 'side-nav-row' : tabName != 'EMPLOYEES'}" (click)="tabClicked('EMPLOYEES')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'EMPLOYEES', 'sidebar-text' : tabName != 'EMPLOYEES'}"> 
                 EMPLOYEES</label>
         </div>
@@ -30,14 +30,14 @@
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'CREATE APPOINTMENTS', 'sidebar-text' : tabName != 'CREATE APPOINTMENTS'}">
                  CREATE APPOINTMENTS</label>
         </div>
-        <!-- <div [ngClass]="{'side-nav-row-selected' : tabName == 'BILLING', 'side-nav-row' : tabName != 'BILLING'}" (click)="tabClicked('BILLING')">
+         <div [ngClass]="{'side-nav-row-selected' : tabName == 'BILLING', 'side-nav-row' : tabName != 'BILLING'}" (click)="tabClicked('BILLING')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'BILLING', 'sidebar-text' : tabName != 'BILLING'}"> 
                 BILLING </label>
-        </div> -->
+        </div>
         <div *ngIf="userType == 'MANAGER' || userType == 'ADMIN'" [ngClass]="{'side-nav-row-selected' : tabName == 'REPORTS', 'side-nav-row' : tabName != 'REPORTS'}" (click)="tabClicked('REPORTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'REPORTS', 'sidebar-text' : tabName != 'REPORTS'}">
                  REPORTS</label>
-        </div>
+        </div> -->
 
     </ng-sidebar>
 

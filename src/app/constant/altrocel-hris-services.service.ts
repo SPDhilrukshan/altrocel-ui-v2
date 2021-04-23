@@ -155,7 +155,7 @@ export class AltrocelServices {
           console.log(error)
           obs.complete();
         });
-      });    
+      });
       return obs;
     }
 }

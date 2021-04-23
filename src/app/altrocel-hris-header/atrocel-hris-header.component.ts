@@ -24,9 +24,9 @@ export class AltrocelHRISHeaderComponent implements OnInit {
 
   @Output() menuOpenClicked = new EventEmitter();
   ngOnInit() {
-    this.userType = localStorage.getItem('loggedUserType');
-    this.userData = JSON.parse(localStorage.getItem('loggedUserData'));
-    this.userName = this.userData.firstName;
+    // this.userType = localStorage.getItem('loggedUserType');
+    // this.userData = JSON.parse(localStorage.getItem('loggedUserData'));
+    // this.userName = this.userData.firstName;
   }
 
   logoutEmployee() {
