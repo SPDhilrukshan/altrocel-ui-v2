@@ -5,12 +5,12 @@
 </header>
 
 
-<ng-sidebar-container style="height: 100vh; position: fixed;">
+<ng-sidebar-container>
     <ng-sidebar mode="slide" [(opened)]="opened" ng-mouseover="openSideBar()" ng-mouseleave="closeSidebar"
-        animate="true" autoCollapseWidth=100>
+        animate="true" autoCollapseWidth=100 style="position: fixed;">
 
-        <div *ngIf="userType != 'PATIENT'" [ngClass]="{'side-nav-row-selected' : tabName == 'PATIENTS', 'side-nav-row' : tabName != 'PATIENTS'}" (click)="tabClicked('PATIENTS')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'PATIENTS', 'sidebar-text' : tabName != 'PATIENTS'}"> 
+        <div [ngClass]="{'side-nav-row-selected' : tabName == 'CREATE EMPLOYEES', 'side-nav-row' : tabName != 'CREATE EMPLOYEES'}" (click)="tabClicked('CREATE EMPLOYEES')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'CREATE EMPLOYEES', 'sidebar-text' : tabName != 'CREATE EMPLOYEES'}"> 
                 Register Employees
              </label>
         </div>
@@ -42,7 +42,7 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
-        <div class="home-page-body" style="padding-left: 10px;">
+        <div style="padding-left: 10px;">
             <!-- <app-atrocel-hris-all-patients  *ngIf="tabName == 'PATIENTS'"></app-atrocel-hris-all-patients>
             <app-landing-page *ngIf="tabName == 'WELCOME'"></app-landing-page>
             <app-all-appointments *ngIf="tabName == 'APPOINTMENTS'" (createAppointment)="tabClicked('CREATE APPOINTMENTS')"></app-all-appointments>
@@ -51,11 +51,12 @@
             <app-create-appointments *ngIf="tabName == 'CREATE APPOINTMENTS'"></app-create-appointments>
             <app-reports *ngIf="tabName == 'REPORTS'"></app-reports>
             <app-billing *ngIf="tabName == 'BILLING'"></app-billing>
-            <app-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></app-register-employees>
+            
             <app-register-lab-tests *ngIf="tabName == 'CREATE LABTESTS'"></app-register-lab-tests> -->
+
+            <app-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></app-register-employees>
         </div>
 
     </div>
 </ng-sidebar-container>
-
 </html>
