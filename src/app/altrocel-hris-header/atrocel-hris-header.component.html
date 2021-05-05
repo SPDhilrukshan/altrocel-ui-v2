@@ -8,41 +8,46 @@
 
     <div class="fixed-header">
         <div class="row">
-            <div class="side-bar-container" style="position: relative;" (click)="toggleSidebar()"
-                style="margin-left: 30px;margin-top: 20px;height: 30px;border-bottom-width: 0px;">
+            <div class="col-md-1">
+                <div class="side-bar-container" style="position: relative;" (click)="toggleSidebar()"
+                style= "padding:5px;margin-top: 0px;margin-left: 12px;">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
+                </div>
             </div>
-            <p class="center-text" style="margin-left: 483px;font-size: 52px;margin-bottom: 0px;">Altrocel HRIS</p>
-
-            <a  class="underlineHover"
+            <div class="col-md-5" style="text-align: end;">
+                <label class="center-text" style="font-size: 32px;font-weight: 600;">Altrocel HRIS</label>
+            </div>
+            <div class="col-md-3">
+                <a  class="underlineHover"
                 style="margin-left: 300px;margin-top: 30px;">
                 <h5>{{userName}}</h5>
             </a>
-            &nbsp; <label style="margin-top: 30px;"> - </label> &nbsp;
+            &nbsp; 
+            <label style="margin-top: 30px;"> - </label>
+            &nbsp;
             <a  class="underlineHover"
                 style="margin-top: 30px;">
                 <h5>{{userType}}</h5>
             </a>
-            &nbsp; <label style="margin-top: 30px;">|</label> &nbsp;
-            <a href="javascript:void(0)" class="underlineHover" (click)="openModal(EditPatientModal)"
-                style="margin-top: 30px;">
-                <h5>PROFILE</h5>
-            </a>
-            &nbsp; <label style="margin-top: 30px;">|</label> &nbsp;
-            <a href="javascript:void(0)" class="underlineHover" (click)="logoutEmployee()"
-                style="margin-top: 30px;">
-                <h5>LOGOUT</h5>
-            </a>
+            </div>
+            <div class="col-md-3 mt-1" style="text-align: end;">
+                <button href="javascript:void(0)" class="underlineHover btn-dashboard-1" (click)="openModal(EditPatientModal)"
+                style="margin-right: 15px;">
+                <label style="font-size: 14px;font-weight:500;margin-bottom: 0px;"> Profile</label>
+                </button>
+                <button href="javascript:void(0)" class="underlineHover btn-dashboard-2" (click)="logoutEmployee()">
+                <label style="font-size: 14px;font-weight: 500;;margin-bottom: 0px;">Logout</label>
+                </button>
+            </div>
         </div>
-
     </div>
-    <div class="fixed-footer">
+    <!-- <div class="fixed-footer">
         <div class="container">
             <p class="footer-text" style="margin-left: 400px;margin-bottom: 6px;">Copyright &copy; 2020 Software Engineering Final Project</p>
         </div>
-    </div>
+    </div> -->
 </body>
 
 </html>

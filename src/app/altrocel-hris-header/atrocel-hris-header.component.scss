@@ -10,7 +10,7 @@
   .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-    background-color: #ffffff;
+    background-color: #38598B;
     margin: 6px 0;
     transition: 0.4s;
     border-radius: 15px;
@@ -38,17 +38,22 @@
     padding-bottom: 30px;
 }
 
-.fixed-header,
-.fixed-footer {
+.fixed-header {
     width: 100%;
     position: fixed;
-    background:	#FF6347;
-    padding: 6px 0;
-    color: #fff;
+    background:	#F1F6F9;
+    padding: 10px;
+    color: #38598B;
+    top: 0;
+    height: 70px;
+    border-bottom: 1px solid #D0E1F9;
 }
 
-.fixed-header {
-    top: 0;
+.fixed-footer {
+  width: 100%;
+  background:	#F1F6F9;
+  padding: 6px 0;
+  color: #38598B;
 }
 
 .fixed-footer {
@@ -66,4 +71,24 @@ nav a {
     text-decoration: none;
     padding: 7px 25px;
     display: inline-block;
+}
+
+.btn-dashboard-1{
+  color: #6B778D;
+  border-color: #6B778D;
+  padding: 7px 11px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.btn-dashboard-2{
+  color: #38598B;
+  border-color: #38598B;
+  padding: 7px 11px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
 }
