@@ -100,10 +100,10 @@ export class AltrocelServices {
         return obs;
       }
       
-    changeEmployeePassword(employeeId: number, newPassword: string): Observable<string> {
-      let obs = new Observable<string>(obs => {
-        this.http.put(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/change-password/employee-id/"+ employeeId +"/new-password/" + newPassword,{ responseType: 'text' }).subscribe(result => {
-          let res = result as string;        
+    changeEmployeePassword(employeeId: number, newPassword: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.post(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/change-password/employee-id/"+ employeeId +"/new-password/" + newPassword,{}).subscribe(result => {
+          let res = result;       
             obs.next(res);
             obs.complete();
         }, error => {
@@ -158,4 +158,47 @@ export class AltrocelServices {
       });
       return obs;
     }
+    
+    getEmployeeByUsername(username: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/employee/username/" + username).subscribe(res => {   
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });    
+      return obs;
+    }
+      
+    getAllLeaveTypes(): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/all-leave-types").subscribe(res => {   
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });    
+      return obs;
+    }
+    
+    saveLeaveType(leaveTypeObj: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.post(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER, leaveTypeObj).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    } 
 }

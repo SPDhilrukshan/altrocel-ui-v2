@@ -1,11 +1,12 @@
 <html>
 
 <header>
-    <app-atrocel-hris-header (menuOpenClicked)="toggleSidebar()"></app-atrocel-hris-header>
+    <app-atrocel-hris-header (menuOpenClicked)="toggleSidebar()" ></app-atrocel-hris-header>
+    <!-- <altrocel-employee-attendance></altrocel-employee-attendance> -->
 </header>
 
 
-<ng-sidebar-container>
+<ng-sidebar-container style="height: 100vh; position: fixed;">
     <ng-sidebar mode="slide" [(opened)]="opened" ng-mouseover="openSideBar()" ng-mouseleave="closeSidebar"
         animate="true" autoCollapseWidth=100 style="position: fixed;">
 
@@ -14,19 +15,19 @@
                 Register Employees
              </label>
         </div>
-        <!-- <div *ngIf="userType != 'PATIENT'" [ngClass]="{'side-nav-row-selected' : tabName == 'EMPLOYEES', 'side-nav-row' : tabName != 'EMPLOYEES'}" (click)="tabClicked('EMPLOYEES')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'EMPLOYEES', 'sidebar-text' : tabName != 'EMPLOYEES'}"> 
-                EMPLOYEES</label>
+         <div [ngClass]="{'side-nav-row-selected' : tabName == 'ATTENDANCE', 'side-nav-row' : tabName != 'ATTENDANCE'}" (click)="tabClicked('ATTENDANCE')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ATTENDANCE', 'sidebar-text' : tabName != 'ATTENDANCE'}"> 
+                Attendance</label>
         </div>
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'LAB TESTS', 'side-nav-row' : tabName != 'LAB TESTS'}" (click)="tabClicked('LAB TESTS')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'LAB TESTS', 'sidebar-text' : tabName != 'LAB TESTS'}">
-                 LAB TESTS</label>
+        <div [ngClass]="{'side-nav-row-selected' : tabName == 'ALL EMPLOYEES', 'side-nav-row' : tabName != 'ALL EMPLOYEES'}" (click)="tabClicked('ALL EMPLOYEES')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ALL EMPLOYEES', 'sidebar-text' : tabName != 'ALL EMPLOYEES'}">
+                 Employees</label>
         </div>
-        <div *ngIf="userType != 'MANAGER'" [ngClass]="{'side-nav-row-selected' : tabName == 'APPOINTMENTS', 'side-nav-row' : tabName != 'APPOINTMENTS'}" (click)="tabClicked('APPOINTMENTS')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'APPOINTMENTS', 'sidebar-text' : tabName != 'APPOINTMENTS'}">
-                 APPOINTMENTS</label>
+        <div [ngClass]="{'side-nav-row-selected' : tabName == 'LEAVE TYPE', 'side-nav-row' : tabName != 'LEAVE TYPE'}" (click)="tabClicked('LEAVE TYPE')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'LEAVE TYPE', 'sidebar-text' : tabName != 'LEAVE TYPE'}">
+                 Leave Type</label>
         </div>
-        <div *ngIf="userType != 'MANAGER'" [ngClass]="{'side-nav-row-selected' : tabName == 'CREATE APPOINTMENTS', 'side-nav-row' : tabName != 'CREATE APPOINTMENTS'}" (click)="tabClicked('CREATE APPOINTMENTS')">
+        <!--<div *ngIf="userType != 'MANAGER'" [ngClass]="{'side-nav-row-selected' : tabName == 'CREATE APPOINTMENTS', 'side-nav-row' : tabName != 'CREATE APPOINTMENTS'}" (click)="tabClicked('CREATE APPOINTMENTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'CREATE APPOINTMENTS', 'sidebar-text' : tabName != 'CREATE APPOINTMENTS'}">
                  CREATE APPOINTMENTS</label>
         </div>
@@ -42,9 +43,9 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
-        <div style="padding-left: 10px;">
+        <div class="home-page-body" style="padding-left: 10px;">
             <!-- <app-atrocel-hris-all-patients  *ngIf="tabName == 'PATIENTS'"></app-atrocel-hris-all-patients>
-            <app-landing-page *ngIf="tabName == 'WELCOME'"></app-landing-page>
+            
             <app-all-appointments *ngIf="tabName == 'APPOINTMENTS'" (createAppointment)="tabClicked('CREATE APPOINTMENTS')"></app-all-appointments>
             <app-all-employees *ngIf="tabName == 'EMPLOYEES'"></app-all-employees>
             <app-all-lab-tests *ngIf="tabName == 'LAB TESTS'" (createLabtests)="tabClicked('CREATE LABTESTS')"></app-all-lab-tests>
@@ -53,8 +54,11 @@
             <app-billing *ngIf="tabName == 'BILLING'"></app-billing>
             
             <app-register-lab-tests *ngIf="tabName == 'CREATE LABTESTS'"></app-register-lab-tests> -->
-
-            <app-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></app-register-employees>
+            <app-landing-page *ngIf="tabName == 'WELCOME'"></app-landing-page>
+            <altrocel-leave-type  *ngIf="tabName == 'LEAVE TYPE'"></altrocel-leave-type>
+            <altrocel-all-employees *ngIf="tabName == 'ALL EMPLOYEES'"></altrocel-all-employees> 
+            <altrocel-employee-attendance *ngIf="tabName == 'ATTENDANCE'"></altrocel-employee-attendance>
+            <altrocel-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></altrocel-register-employees>
         </div>
 
     </div>

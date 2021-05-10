@@ -21,6 +21,11 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { TooltipModule } from "ngx-bootstrap/tooltip";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { RegisterEmployeesComponent } from "../../app/home-page/atrocel-hris-home-page/register-employees/register-employees.component";
+import { AllEmployeesComponent } from './atrocel-hris-home-page/all-employees/all-employees.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { EmployeeAttendanceComponent } from './atrocel-hris-home-page/employee-attendance/employee-attendance.component';
+import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-type.component';
 
 @NgModule({
   declarations: [    
@@ -29,6 +34,9 @@ import { RegisterEmployeesComponent } from "../../app/home-page/atrocel-hris-hom
     AbcLabsFooterComponent,
     LandingPageComponent,
     RegisterEmployeesComponent,
+    AllEmployeesComponent,
+    EmployeeAttendanceComponent,
+    LeaveTypeComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +51,11 @@ import { RegisterEmployeesComponent } from "../../app/home-page/atrocel-hris-hom
     TimepickerModule.forRoot(),
     TooltipModule.forRoot(),
     OwlNativeDateTimeModule,
-    OwlDateTimeModule
+    OwlDateTimeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
     // DatetimePopupModule
     
     ],

@@ -28,5 +28,6 @@ export class AbcLabsHomePageComponent implements OnInit {
 
   tabClicked(tabName:string){
     this.tabName = tabName;
+    this.toggleSidebar();
   }
 }
