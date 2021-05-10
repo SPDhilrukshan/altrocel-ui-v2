@@ -69,7 +69,7 @@ export class LoginPageComponent implements OnInit {
           if (res == LoginResponseStatus.LOGIN_SUCCESS) {
             localStorage.setItem("loggedUserName", username);
             //get staff type for  header
-            localStorage.setItem("loggedUserData", JSON.stringify(res));
+            
   
             console.log(res);
             this.loggedIn.emit();

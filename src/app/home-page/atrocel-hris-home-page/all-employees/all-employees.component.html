@@ -1,0 +1,36 @@
+<div class="row">
+    <label class="heading-text col-md-5"> Employees</label>
+    <!-- <button class="button" (click)="newPatient()"><label style="font-size: 14px;font-weight:500;margin-bottom: 0px;"> Change Password</label></button> -->
+</div>
+<div class="row"> </div>
+
+<div [formGroup]="employeeSearchForm" class="row">
+
+    <div class="row" style="margin-left: 2px;margin-bottom: 16px;width: 350px;">
+        <div class="col-md-3">
+            <br>
+            <label style="width: 257.99306px;">Employee name: </label>
+            <input type="text" formControlName="employeeName" style="height: 35.99306px;width: 257.99306px;">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 35px;">
+        <div class="col-50">
+            <button class="save-button" (click)="searchEmployee()" style="margin-bottom: 10px; margin-right: 5px;" [disabled]="!employeeSearchForm.valid">Search</button>
+        </div>
+        <div class="col-50">
+            <button class="cancel-button" (click)="cancelFormSearchEmployee()">Cancel</button>
+        </div>
+    </div>
+
+</div>
+<div>
+    <ag-grid-angular 
+                style="width: 1340px; height: 400px;"
+                class="ag-theme-alpine"                
+                [columnDefs]="columnDefs" 
+                (gridReady)="griReadyEvent($event)"
+                [gridOptions]="gridOptions"
+                >
+    </ag-grid-angular>
+</div>

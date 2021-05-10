@@ -13,14 +13,14 @@ export class PermissionGuard implements CanActivate {
     }
 
     canActivate(): boolean {
-        return true
-        //check for token in local storage
-        // if(localStorage.getItem("loggedUserName")){
+        // return true
+        // check for token in local storage
+        if(localStorage.getItem("loggedUserName")){
             
-        //     return true;
-        // }else{
-        //     this.router.navigateByUrl("login")
-        // }
-        // return false;
+            return true;
+        }else{
+            this.router.navigateByUrl("login")
+        }
+        return false;
     }
 }

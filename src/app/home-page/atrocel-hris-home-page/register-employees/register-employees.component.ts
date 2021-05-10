@@ -7,7 +7,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-register-employees',
+  selector: 'altrocel-register-employees',
   templateUrl: './register-employees.component.html',
   styleUrls: ['./register-employees.component.scss']
 })
