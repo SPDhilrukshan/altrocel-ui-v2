@@ -26,6 +26,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { EmployeeAttendanceComponent } from './atrocel-hris-home-page/employee-attendance/employee-attendance.component';
 import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-type.component';
+import { AllEmployeesActionCellRendererComponent } from './atrocel-hris-home-page/all-employees/all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
 
 @NgModule({
   declarations: [    
@@ -37,6 +38,7 @@ import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-ty
     AllEmployeesComponent,
     EmployeeAttendanceComponent,
     LeaveTypeComponent,
+    AllEmployeesActionCellRendererComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,7 @@ import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-ty
     
     ],
   entryComponents: [
-    
+    AllEmployeesActionCellRendererComponent
   ],
   providers: [
     // DatePipe

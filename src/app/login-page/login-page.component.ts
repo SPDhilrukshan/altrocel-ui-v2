@@ -55,13 +55,13 @@ export class LoginPageComponent implements OnInit {
     if (username && password) {
       // network call to login employee
       if(username == 'admin' && password == 'admin123'){
-        let adminUser: Employee = new Employee();
-        adminUser.userName = username;
-        adminUser.staffType = 'ADMIN';
-        adminUser.firstName = 'admin';
-        adminUser.lastName = 'admin';
-        localStorage.setItem("loggedUserName", username);
-        localStorage.setItem("loggedUserData", JSON.stringify(adminUser));        
+        // let adminUser: Employee = new Employee();
+        // adminUser.userName = username;
+        // adminUser.staffType = 'ADMIN';
+        // adminUser.firstName = 'admin';
+        // adminUser.lastName = 'admin';
+        // localStorage.setItem("loggedUserName", username);
+        // localStorage.setItem("loggedUserData", JSON.stringify(adminUser));        
         this.loggedIn.emit();
         this.router.navigateByUrl("/dashboard");
       }else{

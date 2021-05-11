@@ -1,0 +1,91 @@
+<!-- add employee credentials -->
+<div class="action-buttons" *ngIf="!hasCredentials">
+    <a (click)="openModal(SaveEmployeeLoginModal)" data-toggle="tooltip" container="body"
+        containerClass="custom-tooltip-class" tooltip="Save Employee Credentials">
+        <img src="../../../../../assets/images/discharge-completed.png">
+    </a>
+</div>
+
+<!-- assign supervisor -->
+<div class="action-buttons">
+    <a (click)="getAllEmployees(); openModal(AssignSupervisorModal)" data-toggle="tooltip" container="body"
+        containerClass="custom-tooltip-class" tooltip="Assign Supervisor">
+        <img src="../../../../../assets/images/shiftendo-completed.png">
+    </a>
+</div>
+
+<ng-template #SaveEmployeeLoginModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Register Credentials</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div [formGroup]="employeeLoginRegisterForm">
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Username: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="empusern" class="form-control-sm form-control" [autocomplete]="'new-password'">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label> Password: </label>
+                </div>
+                <div class="col-8">
+                    <input type="password" formControlName="emppass" class="form-control-sm form-control" [autocomplete]="'new-password'">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Re-password: </label>
+                </div>
+                <div class="col-8">
+                    <input type="password" formControlName="repassword" class="form-control-sm form-control" [autocomplete]="'new-password'">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="saveLoginDetails()" [disabled]="!employeeLoginRegisterForm.valid">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #AssignSupervisorModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Assign Supervisor</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" *ngIf="allEmployees.length > 0">       
+        <div [formGroup]="employeeSupervisorForm">
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Supervisor: </label>
+                </div>
+                <div class="col-8">
+                    <select formControlName="supervisorId" class="form-control-sm form-control">
+                        <option value="" disabled>--Select--</option>
+                        <option *ngFor="let employee of allEmployees" [value]="employee.employeeId">{{employee.firstName + " " + employee.lastName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="saveSupervisor()" [disabled]="!employeeSupervisorForm.valid">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" *ngIf="allEmployees.length == 0">
+        <div class="row">
+            No Employees currently registered;
+        </div>
+    </div>   
+</ng-template>

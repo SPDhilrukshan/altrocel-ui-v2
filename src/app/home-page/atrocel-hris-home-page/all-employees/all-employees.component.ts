@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GridOptions, SetLeftFeature } from 'ag-grid-community';
 import { AltrocelServices } from "../../../constant/altrocel-hris-services.service";
+import { AllEmployeesActionCellRendererComponent } from './all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
 
 @Component({
   selector: 'altrocel-all-employees',
@@ -76,21 +77,16 @@ export class AllEmployeesComponent implements OnInit {
       menuTabs: []
     },
     {
-      field: "bloodGroup", headerName: "Blood Group", index: 9,
-      width: 200, editable: false, headerTooltip: 'Blood Group',
+      field: "jobTitle", headerName: "Job Title", index: 9,
+      width: 200, editable: false, headerTooltip: 'Job Title',
       menuTabs: []
     },
     {
-      field: "designation", headerName: "jobTitle", index: 9,
-      width: 200, editable: false, headerTooltip: 'Designation',
-      menuTabs: []
+      field: "actions", headerName: "actions", index: 9,
+      width: 200, editable: false, headerTooltip: 'actions', 
+      cellRendererFramework: AllEmployeesActionCellRendererComponent,
+      menuTabs: [], pinned: "right"
     }
-    // {
-    //   field: "actions", headerName: "actions", index: 9,
-    //   width: 200, editable: false, headerTooltip: 'actions', 
-    //   // cellRendererFramework: PatientActionRendererComponent,
-    //   menuTabs: [], pinned: "right"
-    // }
   ];
 
   constructor(
@@ -155,6 +151,6 @@ export class AllEmployeesComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-    })
+    });
   }
 }

@@ -1,21 +1,25 @@
 export class Employee {
-  userId: any;
+  employeeId: any;
   firstName: any;
   lastName: any;
-  userName: any;
-  password: any;
   repassword: any;
-  staffType: any;
+  jobTitle: any;
   email: any;
   nic: any;
   contactNumber: any;
   gender: any;
-  maritalStatus: any;
+  civilStatus: any;
   nationality: any;
   address: any;
   dateOfBirth: any;
-  employeeAcceptStatus: any;
-
+  supervisorId: any;
+  race: any;
+  religion: any;
+  passportNumber: any;
+  drivingLicenseNumber: any;
+  homeNumber: any;
+  dateJoined: any;
+  
   constructor() {
 
   }
