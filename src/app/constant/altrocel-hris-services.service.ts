@@ -42,22 +42,6 @@ export class AltrocelServices {
         return obs;
       } 
 
-      
-      updateEmployee(employeeObj): Observable<any> {
-        let obs = new Observable<any>(obs => {
-          this.http.post(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/update/", employeeObj).subscribe(res => {            
-              obs.next(res);
-              obs.complete();
-          }, error => {
-            obs.error(error);
-            console.log(error)
-            obs.complete();
-          });
-        });
-    
-        return obs;
-      }
-
       getEmployeeById(employeeId: number): Observable<any> {
         let obs = new Observable<any>(obs => {
           this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/employee-id/" + employeeId).subscribe(res => {   
@@ -201,4 +185,19 @@ export class AltrocelServices {
   
       return obs;
     } 
+    
+    updateSupervisorForEmployee(employeeId: number, supervisorId: number): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/update-supervisor/employee-id/"+ employeeId +"/supervisor-id/" + supervisorId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }

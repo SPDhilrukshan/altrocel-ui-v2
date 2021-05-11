@@ -105,6 +105,7 @@ export class AltrocelHRISHeaderComponent implements OnInit {
   }
 
   closeModal(){
+    this.ngOnInit();
     this.modal.hide();
   }
 }

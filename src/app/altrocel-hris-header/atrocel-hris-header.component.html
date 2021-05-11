@@ -67,6 +67,7 @@
         <!-- <app-atrocel-hris-register-patients *ngIf="userType == 'PATIENT'" [Data]="userData" (closeEditModal)="closeModal()">
         </app-atrocel-hris-register-patients> -->
         <!-- <app-register-employees *ngIf="userType != 'PATIENT'" [Data]="userData" (closeEditModal)="closeModal()"></app-register-employees> -->
+        <altrocel-register-employees *ngIf="employeeDetails" (closeEditModal)="closeModal()" [Data]="employeeDetails"></altrocel-register-employees>
     </div>
 </ng-template>
 <ng-template #ChangePassword>
