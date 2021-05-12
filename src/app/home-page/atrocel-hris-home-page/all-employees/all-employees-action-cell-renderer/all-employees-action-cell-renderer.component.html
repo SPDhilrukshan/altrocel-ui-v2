@@ -1,17 +1,35 @@
-<!-- add employee credentials -->
-<div class="action-buttons" *ngIf="!hasCredentials">
-    <a (click)="openModal(SaveEmployeeLoginModal)" data-toggle="tooltip" container="body"
-        containerClass="custom-tooltip-class" tooltip="Save Employee Credentials">
-        <img src="../../../../../assets/images/discharge-completed.png">
-    </a>
-</div>
+<div class="row">
+    <!-- add employee credentials -->
+    <div class="action-buttons pl-1 pr-1" *ngIf="!hasCredentials">
+        <a (click)="openModal(SaveEmployeeLoginModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Save Employee Credentials">
+            <img src="../../../../../assets/images/discharge-completed.png">
+        </a>
+    </div>
 
-<!-- assign supervisor -->
-<div class="action-buttons">
-    <a (click)="getAllEmployees(); openModal(AssignSupervisorModal)" data-toggle="tooltip" container="body"
-        containerClass="custom-tooltip-class" tooltip="Assign Supervisor">
-        <img src="../../../../../assets/images/shiftendo-completed.png">
-    </a>
+    <!-- assign supervisor -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="getAllEmployees(); openModal(AssignSupervisorModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Assign Supervisor">
+            <img src="../../../../../assets/images/shiftendo-completed.png">
+        </a>
+    </div>
+
+    <!-- add employee payroll info -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="getEmployeePayrollInfo(); openModal(EmployeePayrollInfoModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Add Payroll Info">
+            <img src="../../../../../assets/images/previous-visits.png">
+        </a>
+    </div>
+
+    <!-- assign leave to employee -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="getAllLeavetypes(); getAllEmployeesLeaveForGrid(); openModal(EmployeeLeaveAssignModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Manage Employee Leave">
+            <img src="../../../../../assets/images/leave-type.png">
+        </a>
+    </div>
 </div>
 
 <ng-template #SaveEmployeeLoginModal>
@@ -88,4 +106,124 @@
             No Employees currently registered;
         </div>
     </div>   
+</ng-template>
+
+<ng-template #EmployeePayrollInfoModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Employee Payroll Info</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div [formGroup]="employeePayrollInfoForm">
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Basic Salary: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="monthlyBasicSalary" (keypress)="inputValidator($event)" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label> Monthly Allowance: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="monthlyAllowance" (keypress)="inputValidator($event)" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-2">
+                    <label>EPF: </label>
+                </div>
+                <div class="col-4">
+                    <input type="text" formControlName="employeeEpfPercentage" class="form-control-sm form-control">
+                </div>
+                <div class="col-2">
+                    <label>ETF: </label>
+                </div>
+                <div class="col-4">
+                    <input type="text" formControlName="employeeEtfPercentage" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Yearly Bonus: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="yearlyBonus" (keypress)="inputValidator($event)" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Travelling Allowance: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="employeeTravellingAllowance" (keypress)="inputValidator($event)" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="saveEmployeePayrollInfo()" [disabled]="!employeePayrollInfoForm.valid">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #EmployeeLeaveAssignModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Employee Payroll Info</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal(); clearEmployeeLeaveForm()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div [formGroup]="employeeLeaveAssignForm">
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Employee Name: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="employeeName" class="form-control-sm form-control" disabled>
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label> Leave Type: </label>
+                </div>
+                <div class="col-8">
+                    <select formControlName="leaveTypeId" class="form-control-sm form-control" (change)="leaveTypeSelected()">
+                        <option value="" disabled>--Select--</option>
+                        <option *ngFor="let leaveType of allLeaveTypes" [value]="leaveType.leaveTypeId">{{leaveType.leaveType}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-4">
+                    <label>Leave Count: </label>
+                </div>
+                <div class="col-8">
+                    <input type="text" formControlName="leaveCount" (keypress)="inputValidator($event)" class="form-control-sm form-control">
+                </div>
+            </div>
+            <div class="row pb-2">
+                <div class="col-12">
+                    <button class="save-button" (click)="saveEmployeeLeaveAssign()" [disabled]="!employeeLeaveAssignForm.valid">Save</button>
+                    &nbsp;
+                    <button class="cancel-button" (click)="clearEmployeeLeaveForm()">Cancel</button>
+                </div>
+            </div>
+            <div class="row pl-2">
+                <ag-grid-angular 
+                    style="width: 773px; height: 400px;" 
+                    class="ag-theme-alpine"
+                    [columnDefs]="columnDefsForLeaveAssignGrid"
+                    (gridReady)="gridReadyEvent($event)" 
+                    [gridOptions]="leaveAssignGridOptions">
+                </ag-grid-angular>
+            </div>
+        </div>
+    </div>
 </ng-template>

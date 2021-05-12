@@ -200,4 +200,64 @@ export class AltrocelServices {
   
       return obs;
     }
+
+    savePayrollInfo(payrollInfoObj: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.post(Constants.SERVER_URL + Constants.PAYROLL_INFO_CONTROLLER, payrollInfoObj).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    } 
+
+    getEmployeePayrollInfo(employeeId: number): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.PAYROLL_INFO_CONTROLLER + "/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    saveEmployeeLeaveAssign(employeeLeaveAssign: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.post(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/leave-type/save", employeeLeaveAssign).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    } 
+
+    getEmployeeLeaveAssigned(employeeId: number): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/all-leave-type/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }
