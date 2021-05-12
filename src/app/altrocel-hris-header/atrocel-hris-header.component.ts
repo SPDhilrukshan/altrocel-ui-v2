@@ -96,7 +96,7 @@ export class AltrocelHRISHeaderComponent implements OnInit {
 
   openModal(ModalRef: any){
     this.modal = this.modalService.show(ModalRef, {
-      class: 'modal-xxlg ',
+      class: 'modal-lg ',
       animated: true,
       keyboard: true,
       backdrop: true,
