@@ -27,6 +27,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { EmployeeAttendanceComponent } from './atrocel-hris-home-page/employee-attendance/employee-attendance.component';
 import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-type.component';
 import { AllEmployeesActionCellRendererComponent } from './atrocel-hris-home-page/all-employees/all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [    
@@ -57,7 +58,8 @@ import { AllEmployeesActionCellRendererComponent } from './atrocel-hris-home-pag
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-    })
+    }),
+    NgxMaterialTimepickerModule
     // DatetimePopupModule
     
     ],
