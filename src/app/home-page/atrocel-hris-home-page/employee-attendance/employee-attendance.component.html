@@ -1,5 +1,5 @@
-this is the msg
-<div [ngSwitch]="view">
+<!-- this is the msg -->
+<!-- <div [ngSwitch]="view">
     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
       [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
       (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
@@ -10,4 +10,103 @@ this is the msg
     <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
       (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-day-view>
+  </div> -->
+
+<div class="row pt-3" [formGroup]="filterForm">
+  <div class="col-lj-1 pl-3">
+    <button class="add-type-button col-12" (click)="openModal(AddAttendanceModal)">Add Leave Type</button>
   </div>
+  <div class="col-md-2 pr-0">
+    <div class="nova-form-control">
+      <div class="nova-toggle-switch">
+        <label class="nova-switch">
+          <input checked="" type="checkbox" class="form-control-sm form-control" formControlName="filterByApproved"
+            (change)="filterAttendanceByApproved()">
+          <span class="nova-slider nova-round"></span>
+        </label>
+        <span class="toggle-text">Unapproved Attendance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-5 pl-4">
+    <!-- <input type="text" placeholder="Search with Attendance Date" class="form-control-sm form-control" [selectMode]="range"
+        [rangeSeparator]="'to'" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="attendanceDateRange"
+        (dateTimeInput)="searchAttendanceDateRange()">
+      <span [owlDateTimeTrigger]="dt1"><i class="fa fa-calender"></i></span>
+      <owl-date-time #dt1></owl-date-time> -->
+      <div class="row">
+        <label class="col-5 pr-1 pt-1" style="text-align: end; font-size: 15px;">
+          Search Attendance Date: 
+        </label>
+      <input type="text" autocomplete="off" placeholder="Search with Attendance Date" bsDaterangepicker formControlName="attendanceDateRange"
+        [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="searchAttendanceDateRange()"
+        class="col-5 form-control-sm form-control">
+      </div>
+  </div>
+
+</div>
+
+<div class="row pl-3 pt-3">
+  <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+    (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
+  </ag-grid-angular>
+</div>
+
+<ng-template #AddAttendanceModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Attendance</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div [formGroup]="addAttendanceForm">
+      <!-- <div class="row pb-2">
+        <div class="col-4">
+          <label> Date Of Entry: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" autocomplete="off" bsDatepicker formControlName="attendanceDate"
+              [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="onDateChange($event)"
+              class="form-control-sm form-control">
+        </div>
+      </div> -->
+      <div class="row pb-2">
+        <div class="col-2" style="text-align: right;">
+          <label> Date Of Entry: </label>
+        </div>
+        <div class="col-2 pl-0">
+          <input type="text" autocomplete="off" bsDatepicker formControlName="attendanceDate"
+              [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="onDateChange($event)"
+              class="form-control-sm form-control">
+        </div>
+        <div class="col-2" style="text-align: right;">
+          <label> Time In: </label>
+        </div>
+        <div class="col-2 pl-0">
+            <input [ngxTimepicker]="picker" class="form-control-sm form-control" formControlName="attendanceTimeIn">
+            <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #picker></ngx-material-timepicker>
+        </div>
+        <div class="col-2" style="text-align: right;">
+          <label> Time Out: </label>
+        </div>
+        <div class="col-2 pl-0">
+          <input [ngxTimepicker]="pickerA" class="form-control-sm form-control" formControlName="attendanceTimeOut">
+            <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #pickerA></ngx-material-timepicker>
+        </div>
+      </div>
+      <div class="col-md-12 pb-2">
+        <div class="nova-form-control cr__textarea">
+          <label class="cr__title-black">Comment</label>
+          <textarea type="text" placeholder="Form Text" class="form-control form-control-sm col-12" formControlName="comments"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="save-button" (click)="saveAttendance()" [disabled]="!addAttendanceForm.valid">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

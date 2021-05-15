@@ -114,9 +114,9 @@ export class AltrocelServices {
       return obs;
     }
 
-    getEmployeeAttendanceByDateRange(startDate: any, endDate: any): Observable<any> {
+    getEmployeeAttendanceByDateRange(startDate: any, endDate: any, employeeId: number): Observable<any> {
       let obs = new Observable<any>(obs => {
-        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/date-range/start-date/"+ startDate +"/end-date/" + endDate).subscribe(res => {   
+        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/date-range/start-date/" + startDate + "/end-date/"+ endDate +"/employee-id/" + employeeId).subscribe(res => {   
             obs.next(res);
             obs.complete();
         }, error => {
@@ -127,11 +127,24 @@ export class AltrocelServices {
       });    
       return obs;
     }
-
     
     getEmployeeAttendanceByEmployeeId(employeeId: any): Observable<any> {
       let obs = new Observable<any>(obs => {
         this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/employee-id/"+ employeeId).subscribe(res => {   
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+      return obs;
+    }
+    
+    getEmployeeAttendanceByEmployeeIdAndStatus(employeeId: any, attendanceStatus: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/employee-id/"+ employeeId + "/attendance-status/" + attendanceStatus).subscribe(res => {   
             obs.next(res);
             obs.complete();
         }, error => {
