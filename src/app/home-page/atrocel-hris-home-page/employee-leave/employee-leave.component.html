@@ -1,0 +1,83 @@
+<div class="row pt-3">
+    <div class="col-lj-1 pl-3">
+        <button class="add-type-button col-12" (click)="openModal(ApplyLeaveModal)">Apply Leave</button>
+    </div>
+</div>
+<div class="row pl-3 pt-3">
+    <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+        (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
+    </ag-grid-angular>
+</div>
+
+<ng-template #ApplyLeaveModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Apply Leave</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" *ngIf="leaveTypesForEmployee.length > 0">
+        <div [formGroup]="applyLeaveForm">
+            <!-- <div class="row pb-2">
+          <div class="col-4">
+            <label> Date Of Entry: </label>
+          </div>
+          <div class="col-8">
+            <input type="text" autocomplete="off" bsDatepicker formControlName="attendanceDate"
+                [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="onDateChange($event)"
+                class="form-control-sm form-control">
+          </div>
+        </div> -->
+            <div class="row" *ngIf="selectedLeaveType">
+                <p class="col-6" style="font-weight:700;">Remaining Leave Count for current year:</p> 
+                <p class="col-4 pl-0" style="text-align: left;">{{selectedLeaveType.remainingLeaveCountAnnum}} days</p>
+            </div>
+            <div class="row pb-2">
+                <div class="col-2" style="text-align: right;">
+                    <label> Date of Leave: </label>
+                </div>
+                <div class="col-2 pl-0">
+                    <input type="text" autocomplete="off" bsDatepicker formControlName="leaveDate"
+                        [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}"
+                        (bsValueChange)="onDateChange($event)" class="form-control-sm form-control">
+                </div>
+                <div class="col-1">
+                    <label>Leave: </label>
+                </div>
+                <div class="col-3">
+                    <select formControlName="halfDayOrFullDay" class="form-control-sm form-control">
+                        <option value="">--Select--</option>
+                        <option value="HALF_DAY">Half Day</option>
+                        <option value="FULL_DAY">Full Day</option>
+                    </select>
+                </div>
+                <div class="col-1">
+                    <label>Type: </label>
+                </div>
+                <div class="col-3">
+                    <select formControlName="leaveTypeId" class="form-control-sm form-control" (change)="getLeaveTypeById()">
+                        <option value="">--Select--</option>
+                        <option *ngFor="let value of leaveTypesForEmployee" [value]="value.leaveTypeId">
+                            {{value.leaveType}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 pb-2">
+                <div class="nova-form-control cr__textarea">
+                    <label class="cr__title-black">Leave Reasons</label>
+                    <textarea type="text" placeholder="Enter the Leave Reasons"
+                        class="form-control form-control-sm col-12" formControlName="leaveReason"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="saveEmployeeLeave()"
+                        [disabled]="!applyLeaveForm.valid && selectedLeaveType && selectedLeaveType.remainingLeaveCountAnnum > 0">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" *ngIf="leaveTypesForEmployee.length == 0">
+        <h3 class="col-12">No leaves assigned for you</h3>
+    </div>
+</ng-template>

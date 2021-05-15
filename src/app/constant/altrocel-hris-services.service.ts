@@ -273,4 +273,49 @@ export class AltrocelServices {
   
       return obs;
     }
+
+    getEmployeeLeaveAppliedByEmployeeForGrid(employeeId: number): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/employee-leave/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    applyEmployeeLeave(employeeLeaveObj: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.post(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/employee-leave/save", employeeLeaveObj).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    getleaveTypeById(employeeId: any, leaveTypeId: number): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/leave-type-id/" + leaveTypeId + "/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }
