@@ -67,15 +67,15 @@ export class EmployeeAttendanceComponent implements OnInit {
     },
     {
       field: "attendanceTimeIn", headerName: "Time In", index: 6,
-      width: 200, editable: false, menuTabs: [], headerTooltip: 'Time In', pinned: "left",
+      width: 100, editable: false, menuTabs: [], headerTooltip: 'Time In', pinned: "left",
     },
     {
       field: "attendanceTimeOut", headerName: "Time Out", index: 6,
-      width: 200, editable: false, menuTabs: [], headerTooltip: 'Time Out'
+      width: 100, editable: false, menuTabs: [], headerTooltip: 'Time Out'
     },
     {
       field: "hoursWorked", headerName: "Hours Worked", index: 9,
-      width: 200, editable: false, headerTooltip: 'Hours Worked',
+      width: 150, editable: false, headerTooltip: 'Hours Worked',
       menuTabs: []
     },
     {
@@ -125,7 +125,7 @@ export class EmployeeAttendanceComponent implements OnInit {
   griReadyEvent(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
+    // params.api.sizeColumnsToFit();
     this.gridParams = params.data;
     this.gridApi.setRowData([]);
   }
@@ -138,7 +138,7 @@ export class EmployeeAttendanceComponent implements OnInit {
     if (this.filterForm.get('filterByApproved').value === true) {
       let filteredData: any[] = [];
       this.gridData.forEach(element => {
-        if (element.attendanceStatus === AttendanceStatus.APPROVED) {
+        if (element.attendanceStatus === AttendanceStatus.REQUESTED) {
           filteredData.push(element);
         }
       });
@@ -175,7 +175,7 @@ export class EmployeeAttendanceComponent implements OnInit {
       setTimeout(() => {
         this.gridApi.setRowData(this.gridData);
       }, 500);
-    })
+    });
   }
 
   saveAttendance(){
@@ -200,6 +200,8 @@ export class EmployeeAttendanceComponent implements OnInit {
             closeButton: true
           });
           this.closeModal();
+          this.addAttendanceForm.reset();
+          this.filterForm.reset();
           this.getAttendanceForGrid();
         }
       }, error => {
@@ -220,7 +222,9 @@ export class EmployeeAttendanceComponent implements OnInit {
   }
 
   searchAttendanceDateRange(){
-    this.gridApi.showLoadingOverlay();
+    if(this.gridApi){
+      this.gridApi.showLoadingOverlay();
+    }
     console.log(this.filterForm.get('attendanceDateRange').value)
 
     let appointmentStartDate: any = this.datePipe.transform(this.filterForm.get('attendanceDateRange').value[0], "yyyy-MM-dd HH:mm:ss");
