@@ -156,6 +156,20 @@ export class AltrocelServices {
       return obs;
     }
     
+    getEmployeeLeaveByEmployeeIdAndStatus(employeeId: any, leaveStatus: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/leave-status/" + leaveStatus + "/employee-id/" + employeeId).subscribe(res => {   
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+      return obs;
+    }
+
     getEmployeeByUsername(username: string): Observable<any> {
       let obs = new Observable<any>(obs => {
         this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/employee/username/" + username).subscribe(res => {   
@@ -322,6 +336,51 @@ export class AltrocelServices {
     getAttendanceDashboardData(employeeId: any): Observable<any> {
       let obs = new Observable<any>(obs => {
         this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/attendance-dashboard/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    getTeamMembersData(supervisorId: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/team-members/supervisor-id/" + supervisorId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    approveLeave(employeeLeaveId: any, approvalStatus: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/approve/employee-leave-id/"+ employeeLeaveId +"/leave-status/" + approvalStatus).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+    
+    approveAttendance(attendanceId: any, attendanceStatus: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/approve/"+ attendanceId +"/status/" + attendanceStatus).subscribe(res => {            
             obs.next(res);
             obs.complete();
         }, error => {

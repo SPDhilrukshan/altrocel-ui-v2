@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-4 mr-4" style="margin-right: 3.5rem !important;">
+        <div class="row pt-3" [formGroup]="filterForm">
+            <div class="col-12" style="text-align: left;">
+                <h2>My Team</h2>
+            </div>
+            <label class="col-5 pr-1 pt-1" style="font-size: 15px;">
+                Search Team Member:
+            </label>
+            <input type="text" autocomplete="off" placeholder="Team Member Name" formControlName="employeeName"
+                class="col-5 form-control-sm form-control" (input)="searchTeamMembers()">
+        </div>
+
+        <div class="row pl-3 pt-3">
+            <ag-grid-angular style="width: 450px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+                (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions" (rowClicked)="employeeSelected($event)">
+            </ag-grid-angular>
+        </div>
+    </div>
+
+    <div class="pl-1 pr-1 vl"></div>
+    <div class="col-7 pr-2" *ngIf="selectedEmployee">
+        <div class="row">
+            <div class="modal-header" style="padding: 0rem 1rem">
+                <h4 class="modal-title pull-left">Team Member Attendance Data</h4>
+                <button type="button" class="close pull-right pr-4" aria-label="Close" (click)="closeSection()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ag-grid-angular style="width: 760px; height: 200px;" class="ag-theme-alpine" [columnDefs]="attendanceColumnDefs"
+                    (gridReady)="attendancegridReadyEvent($event)" [gridOptions]="gridOptions">
+                </ag-grid-angular>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="modal-header" style="padding: 0rem 1rem">
+                <h4 class="modal-title pull-left">Team Member Leave Data</h4>
+                <button type="button" class="close pull-right pr-4" aria-label="Close" (click)="closeSection()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ag-grid-angular style="width: 760px; height: 200px;" class="ag-theme-alpine" [columnDefs]="leaveColumnDefs"
+                    (gridReady)="leaveGridReadyEvent($event)" [gridOptions]="gridOptions">
+                </ag-grid-angular>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-7 pr-2" style="align-self: center;" *ngIf="!selectedEmployee">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Select a team Member from the grid to view data</h4>
+        </div>
+    </div>
+</div>
