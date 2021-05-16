@@ -16,6 +16,8 @@ import { DatePipe } from '@angular/common';
 import { RegisterEmployeesComponent } from "../app/home-page/atrocel-hris-home-page/register-employees/register-employees.component";
 // import { AltrocelHRISHeaderComponent } from './atrocel-hris-header/atrocel-hris-header.component';
 import { HomePageModule } from "./home-page/home-page.module";
+import * as $ from 'jquery';
+
 @NgModule({
   declarations: [
     AppComponent,

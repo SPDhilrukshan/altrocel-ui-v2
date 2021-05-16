@@ -51,9 +51,15 @@ export class EmployeeAttendanceComponent implements OnInit {
   addAttendanceForm: FormGroup;
   filterForm: FormGroup;
   employeeData: any;
+  today: Date;
+  attendanceDashboardData: any;
 
   //search calender date range
   range: any = "range";
+  config: any = {
+    viewType: "Week",
+    startDate: "2017-01-05"
+  }
 
   columnDefs = [
     {
@@ -94,6 +100,7 @@ export class EmployeeAttendanceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.today= new Date();
     this.employeeData = JSON.parse(localStorage.getItem('loggedUserData'));
     this.addAttendanceForm = new FormGroup({
       attendanceDate: new FormControl("", [Validators.required]),
@@ -106,6 +113,7 @@ export class EmployeeAttendanceComponent implements OnInit {
       attendanceDateRange: new FormControl("", [Validators.required]),
     });
     this.getAttendanceForGrid();
+    this.getAttendanceDashboardData();
   }    
   
   openModal(ModalRef: any){
@@ -203,6 +211,7 @@ export class EmployeeAttendanceComponent implements OnInit {
           this.addAttendanceForm.reset();
           this.filterForm.reset();
           this.getAttendanceForGrid();
+          this.getAttendanceDashboardData();
         }
       }, error => {
         console.log(error);
@@ -242,5 +251,15 @@ export class EmployeeAttendanceComponent implements OnInit {
         }
       }
     });
+  }
+
+  getAttendanceDashboardData(){
+    this.altrocelServices.getAttendanceDashboardData(this.employeeData.employeeId).subscribe(res => {
+      if(res){
+        this.attendanceDashboardData = Object.assign(res);
+      }
+    }, error => {
+      console.log(error);
+    })
   }
 }
