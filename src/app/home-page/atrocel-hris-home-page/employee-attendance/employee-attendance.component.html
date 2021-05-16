@@ -1,5 +1,10 @@
-<!-- this is the msg -->
-<!-- <div [ngSwitch]="view">
+<div class="col-12" style="text-align: center;">
+  <h2>Employee Attendance</h2>
+</div>
+<div class="row">
+  <div class="col-7 mr-4" style="margin-right: 3.5rem !important;">
+    <!-- this is the msg -->
+    <!-- <div [ngSwitch]="view">
     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
       [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
       (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
@@ -12,45 +17,119 @@
     </mwl-calendar-day-view>
   </div> -->
 
-<div class="row pt-3" [formGroup]="filterForm">
-  <div class="col-lj-1 pl-3">
-    <button class="add-type-button col-12" (click)="openModal(AddAttendanceModal)">Add Attendance</button>
-  </div>
-  <div class="col-md-2 pr-0">
-    <div class="nova-form-control">
-      <div class="nova-toggle-switch">
-        <label class="nova-switch">
-          <input checked="" type="checkbox" class="form-control-sm form-control" formControlName="filterByApproved"
-            (change)="filterAttendanceByApproved()">
-          <span class="nova-slider nova-round"></span>
-        </label>
-        <span class="toggle-text">Unapproved Attendance</span>
+    <div class="row pt-3" [formGroup]="filterForm">
+      <div class="col-lj-1 pl-3">
+        <button class="add-type-button col-12" (click)="openModal(AddAttendanceModal)">Add Attendance</button>
       </div>
-    </div>
-  </div>
+      <div class="col-md-2 pr-0">
+        <div class="nova-form-control">
+          <div class="nova-toggle-switch">
+            <label class="nova-switch">
+              <input checked="" type="checkbox" class="form-control-sm form-control"  formControlName="filterByApproved"
+                (change)="filterAttendanceByApproved()">
+              <span class="nova-slider nova-round"></span>
+            </label>
+            <span class="toggle-text">Unapproved Attendance</span>
+          </div>
+        </div>
+      </div>
 
-  <div class="col-5 pl-4">
-    <!-- <input type="text" placeholder="Search with Attendance Date" class="form-control-sm form-control" [selectMode]="range"
+      <div class="col-8 pl-4">
+        <!-- <input type="text" placeholder="Search with Attendance Date" class="form-control-sm form-control" [selectMode]="range"
         [rangeSeparator]="'to'" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" formControlName="attendanceDateRange"
         (dateTimeInput)="searchAttendanceDateRange()">
       <span [owlDateTimeTrigger]="dt1"><i class="fa fa-calender"></i></span>
       <owl-date-time #dt1></owl-date-time> -->
-      <div class="row">
-        <label class="col-5 pr-1 pt-1" style="text-align: end; font-size: 15px;">
-          Search Attendance Date: 
-        </label>
-      <input type="text" autocomplete="off" placeholder="Search with Attendance Date" bsDaterangepicker formControlName="attendanceDateRange"
-        [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="searchAttendanceDateRange()"
-        class="col-5 form-control-sm form-control">
+        <div class="row">
+          <label class="col-5 pr-1 pt-1" style="text-align: end; font-size: 15px;">
+            Search Attendance Date:
+          </label>
+          <input type="text" autocomplete="off" placeholder="Search with Attendance Date" bsDaterangepicker
+            formControlName="attendanceDateRange" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}"
+            (bsValueChange)="searchAttendanceDateRange()" class="col-5 form-control-sm form-control">
+        </div>
       </div>
+    </div>
+
+    <div class="row pl-3 pt-3">
+      <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+        (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
+      </ag-grid-angular>
+    </div>
   </div>
+  
+  <div class="pl-1 pr-1 vl" *ngIf="attendanceDashboardData">`</div>
+  <div class="col-4" *ngIf="attendanceDashboardData">
+    <div class="row">
+      &nbsp;
+    </div>
+    <div class="row pt-3">      
+      <h4>Employee Attendance Information</h4>
+    </div>
 
-</div>
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Total Working Days: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.totalWorkedDays}} days
+      </div>
+    </div>
 
-<div class="row pl-3 pt-3">
-  <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
-    (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
-  </ag-grid-angular>
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Days Worked: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.daysWorked}} days
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Hours Worked: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.hoursWorked}} hours
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Missing Attendance: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.missingAttendanceCount}} days
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Approved Attendance: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.approvedAttendanceCount}} days
+      </div>
+    </div>
+    
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Pending Attendance: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.unApprovedAttendanceCount}} days
+      </div>
+    </div>
+    
+    <div class="row pt-3">
+      <div class="col-6">
+        <p>Rejected Attendance: </p> 
+      </div>
+      <div class="col-6">
+        {{attendanceDashboardData.rejectedAttendanceCount}} days
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #AddAttendanceModal>
@@ -78,28 +157,29 @@
         </div>
         <div class="col-2 pl-0">
           <input type="text" autocomplete="off" bsDatepicker formControlName="attendanceDate"
-              [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" (bsValueChange)="onDateChange($event)"
-              class="form-control-sm form-control">
+            [bsConfig]="{dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false}" [maxDate]="today" (bsValueChange)="onDateChange($event)"
+            class="form-control-sm form-control">
         </div>
         <div class="col-2" style="text-align: right;">
           <label> Time In: </label>
         </div>
         <div class="col-2 pl-0">
-            <input [ngxTimepicker]="picker" class="form-control-sm form-control" formControlName="attendanceTimeIn">
-            <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #picker></ngx-material-timepicker>
+          <input [ngxTimepicker]="picker" class="form-control-sm form-control" formControlName="attendanceTimeIn">
+          <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #picker></ngx-material-timepicker>
         </div>
         <div class="col-2" style="text-align: right;">
           <label> Time Out: </label>
         </div>
         <div class="col-2 pl-0">
           <input [ngxTimepicker]="pickerA" class="form-control-sm form-control" formControlName="attendanceTimeOut">
-            <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #pickerA></ngx-material-timepicker>
+          <ngx-material-timepicker [format]="'24'" (timeSet)="timeSet($event)" #pickerA></ngx-material-timepicker>
         </div>
       </div>
       <div class="col-md-12 pb-2">
         <div class="nova-form-control cr__textarea">
           <label class="cr__title-black">Comment</label>
-          <textarea type="text" placeholder="Form Text" class="form-control form-control-sm col-12" formControlName="comments"></textarea>
+          <textarea type="text" placeholder="Form Text" class="form-control form-control-sm col-12"
+            formControlName="comments"></textarea>
         </div>
       </div>
       <div class="row">

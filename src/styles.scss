@@ -4,7 +4,6 @@
 @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 /* angular-cli file: src/styles.css */
-@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 .save-button{
     background-color: #4cAF50;
@@ -147,4 +146,11 @@
 
 .timepicker-backdrop-overlay {
     z-index: 10000000 !important;
+}
+
+.vl{
+    border-left: 3px solid;
+    height: 500px;
+    margin-right: auto;
+    margin-left: auto;
 }

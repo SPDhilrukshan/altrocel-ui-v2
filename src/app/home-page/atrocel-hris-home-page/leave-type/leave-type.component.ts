@@ -57,7 +57,7 @@ export class LeaveTypeComponent implements OnInit {
     });
     this.addLeavetypeForm = new FormGroup({
       leaveTypeName: new FormControl("", [Validators.required]),
-      leaveTypeCount: new FormControl("", [Validators.required])
+      leaveTypeCount: new FormControl("", [Validators.required, Validators.pattern(/^[.\d]+$/)])
     });
     this.getAllLeaveTypes();
   }

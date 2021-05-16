@@ -318,4 +318,19 @@ export class AltrocelServices {
   
       return obs;
     }
+
+    getAttendanceDashboardData(employeeId: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/attendance-dashboard/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }

@@ -28,7 +28,7 @@ import { EmployeeAttendanceComponent } from './atrocel-hris-home-page/employee-a
 import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-type.component';
 import { AllEmployeesActionCellRendererComponent } from './atrocel-hris-home-page/all-employees/all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { EmployeeLeaveComponent } from './atrocel-hris-home-page/employee-leave/employee-leave.component';
+import { EmployeeLeaveComponent } from '../home-page/atrocel-hris-home-page/employee-leave/employee-leave.component';
 
 @NgModule({
   declarations: [    
@@ -41,7 +41,7 @@ import { EmployeeLeaveComponent } from './atrocel-hris-home-page/employee-leave/
     EmployeeAttendanceComponent,
     LeaveTypeComponent,
     AllEmployeesActionCellRendererComponent,
-    EmployeeLeaveComponent,
+    EmployeeLeaveComponent
   ],
   imports: [
     CommonModule,
