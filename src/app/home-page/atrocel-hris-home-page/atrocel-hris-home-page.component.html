@@ -31,11 +31,11 @@
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'APPLY LEAVE', 'sidebar-text' : tabName != 'APPLY LEAVE'}">
                  Apply Leave</label>
         </div>
-          <!--<div [ngClass]="{'side-nav-row-selected' : tabName == 'BILLING', 'side-nav-row' : tabName != 'BILLING'}" (click)="tabClicked('BILLING')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'BILLING', 'sidebar-text' : tabName != 'BILLING'}"> 
-                BILLING </label>
+        <div [ngClass]="{'side-nav-row-selected' : tabName == 'MY TEAM', 'side-nav-row' : tabName != 'MY TEAM'}" (click)="tabClicked('MY TEAM')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'MY TEAM', 'sidebar-text' : tabName != 'MY TEAM'}"> 
+                My Team </label>
         </div>
-        <div *ngIf="userType == 'MANAGER' || userType == 'ADMIN'" [ngClass]="{'side-nav-row-selected' : tabName == 'REPORTS', 'side-nav-row' : tabName != 'REPORTS'}" (click)="tabClicked('REPORTS')">
+        <!--<div *ngIf="userType == 'MANAGER' || userType == 'ADMIN'" [ngClass]="{'side-nav-row-selected' : tabName == 'REPORTS', 'side-nav-row' : tabName != 'REPORTS'}" (click)="tabClicked('REPORTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'REPORTS', 'sidebar-text' : tabName != 'REPORTS'}">
                  REPORTS</label>
         </div> -->
@@ -60,6 +60,7 @@
             <altrocel-employee-attendance *ngIf="tabName == 'ATTENDANCE'"></altrocel-employee-attendance>
             <altrocel-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></altrocel-register-employees>
             <altrocel-employee-leave *ngIf="tabName == 'APPLY LEAVE'"></altrocel-employee-leave>
+            <altrocel-my-team *ngIf="tabName == 'MY TEAM'"></altrocel-my-team>
         </div>
 
     </div>

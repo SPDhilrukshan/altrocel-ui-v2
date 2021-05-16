@@ -1,0 +1,60 @@
+<div class="row">
+    <!-- approve attendance -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="openModal(ConfirmApprovalModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Approve Attendance">
+            <img src="../../../../../assets/images/discharge-completed.png">
+        </a>
+    </div>
+
+    <!-- reject attendance -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="openModal(RejectApprovalModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Reject Attendance">
+            <img src="../../../../../assets/images/leave-type.png">
+        </a>
+    </div>
+</div>
+
+<ng-template #ConfirmApprovalModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm Approval</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div>
+            <div class="row pb-2">
+                <label>Are you sure you want to approve this attendance? </label>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="updateAttendance('APPROVE')">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #RejectApprovalModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm Approval</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div>
+            <div class="row pb-2">
+                <label>Are you sure you want to reject this attendance? </label>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="save-button" (click)="updateAttendance('REJECT')">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
