@@ -25,6 +25,8 @@ import { Attendance } from "../../../model/employee.model";
 import { AltrocelServices } from '../../../constant/altrocel-hris-services.service';
 import { ToastrService } from 'ngx-toastr';
 import { AttendanceStatus } from '../../../enums/attendance-status.enum';
+import { HomePageService } from '../../home-page-service.service';
+import { AttendanceActionCellRendererComponent } from './attendance-action-cell-renderer/attendance-action-cell-renderer.component';
 
 @Component({
   selector: 'altrocel-employee-attendance',
@@ -89,6 +91,12 @@ export class EmployeeAttendanceComponent implements OnInit {
       width: 200, editable: false, headerTooltip: 'Attendance Status',
       menuTabs: []
     }
+    // {
+    //   field: "actions", headerName: "actions", index: 9,
+    //   width: 200, editable: false, headerTooltip: 'actions', 
+    //   cellRendererFramework: AttendanceActionCellRendererComponent,
+    //   menuTabs: [], pinned: "right"
+    // }
   ];
 
   public modal: BsModalRef;
@@ -97,6 +105,7 @@ export class EmployeeAttendanceComponent implements OnInit {
     private datePipe: DatePipe,
     private altrocelServices: AltrocelServices,
     private toastr: ToastrService,
+    private homePageServices: HomePageService
   ) { }
 
   ngOnInit() {

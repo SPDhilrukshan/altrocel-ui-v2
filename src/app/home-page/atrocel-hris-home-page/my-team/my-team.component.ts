@@ -249,11 +249,18 @@ export class MyTeamComponent implements OnInit {
   }
 
   getAttendanceForSelectedEmployee(){
+    if(this.attendanceGridApi){
+      this.attendanceGridApi.showLoadingOverlay();
+    }
     this.altrocelServices.getEmployeeAttendanceByEmployeeIdAndStatus(this.selectedEmployee.employeeId, AttendanceStatus.REQUESTED).subscribe(res => {
       if(res){
         this.attendanceGridData = Object.assign(res);
         setTimeout(() => {
           this.attendanceGridApi.setRowData(this.attendanceGridData);
+        }, 500);
+      }else{
+        setTimeout(() => {
+          this.attendanceGridApi.setRowData([]);
         }, 500);
       }
     }, error => {
@@ -262,11 +269,18 @@ export class MyTeamComponent implements OnInit {
   }
 
   getLeaveForSelectedEmployee(){
+    if(this.leaveGridApi){
+      this.leaveGridApi.showLoadingOverlay();
+    }
     this.altrocelServices.getEmployeeLeaveByEmployeeIdAndStatus(this.selectedEmployee.employeeId, LeaveStatus.REQUESTED).subscribe(res => {
       if(res){
         this.leaveGridData = Object.assign(res);
         setTimeout(() => {
           this.leaveGridApi.setRowData(this.leaveGridData);
+        }, 500);
+      }else{
+        setTimeout(() => {
+          this.leaveGridApi.setRowData([]);
         }, 500);
       }
     }, error => {

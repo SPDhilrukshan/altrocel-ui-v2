@@ -8,6 +8,8 @@ import { PayrollInfo } from '../../../../model/payroll-info.model';
 import { AltrocelServices } from '../../../../constant/altrocel-hris-services.service';
 import { EmployeeLeaveAssigned } from "../../../../model/employee-leave-assign.model";
 import { GridOptions } from 'ag-grid-community';
+import { EmployeeActiveStatus } from '../../../../enums/employee-active-status.enum';
+import { AllEmployeesService } from '../all-employees-service.service';
 
 @Component({
   selector: 'app-all-employees-action-cell-renderer',
@@ -64,7 +66,8 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
   constructor(    
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private altrocelServices: AltrocelServices
+    private altrocelServices: AltrocelServices,
+    private allEmployeesService: AllEmployeesService
   ) { }
 
  
@@ -133,6 +136,7 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
           closeButton: true
         });
         this.closeModal();
+        this.allEmployeesService.refreshGrid("REFRESH GRID");
       }
     }, error => {
       console.log(error);
@@ -179,6 +183,7 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
           closeButton: true
         });
         this.closeModal();
+        this.allEmployeesService.refreshGrid("REFRESH GRID");
       }else{
         this.toastr.error('FAILED TO update employee supervisor', 'Error!', {
           timeOut: 3000,
@@ -237,6 +242,7 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
           closeButton: true
         });
         this.closeModal();
+        this.allEmployeesService.refreshGrid("REFRESH GRID");
       }
     }, error => {
       console.log(error);
@@ -323,7 +329,7 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
         progressBar: true,
         closeButton: true
       });
-    })
+    });
     
   }
 
@@ -345,6 +351,29 @@ export class AllEmployeesActionCellRendererComponent  implements OnInit, ICellRe
     }, error => {
       console.log(error);
       this.toastr.error('Failed to get all leaves assigned to employee', 'Error!', {
+        timeOut: 3000,
+        progressBar: true,
+        closeButton: true
+      });
+    });
+  }
+
+  makeEmployeeInactive(){
+    this.altrocelServices.makeEmployeeInactive(this.employeeId, EmployeeActiveStatus.IN_ACTIVE).subscribe(res => {
+      if(res){
+        this.toastr.success('Employee is now Inactive!', 'Success!', {
+          timeOut: 3000,
+          progressBar: true,
+          closeButton: true
+        });
+        this.getAllEmployeesLeaveForGrid();
+        this.clearEmployeeLeaveForm();
+        this.closeModal();
+        this.allEmployeesService.refreshGrid("REFRESH GRID");
+      }
+    }, error => {
+      console.log(error);
+      this.toastr.error('Failed to make employee inactive', 'Error!', {
         timeOut: 3000,
         progressBar: true,
         closeButton: true

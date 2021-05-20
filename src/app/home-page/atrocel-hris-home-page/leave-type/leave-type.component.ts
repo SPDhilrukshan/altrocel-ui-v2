@@ -5,6 +5,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AltrocelServices } from 'src/app/constant/altrocel-hris-services.service';
 import { EmployeeLeavetype } from '../../../../app/model/leave-type.model';
+import { HomePageService } from '../../home-page-service.service';
+import { LeaveTypeActionCellRendererComponent } from './leave-type-action-cell-renderer/leave-type-action-cell-renderer.component';
 
 @Component({
   selector: 'altrocel-leave-type',
@@ -27,6 +29,7 @@ export class LeaveTypeComponent implements OnInit {
     private altrocelServices: AltrocelServices,
     private modalService: BsModalService,
     private toastr: ToastrService,
+    private homePageServices: HomePageService
   ) { }
 
   columnDefs = [
@@ -42,13 +45,13 @@ export class LeaveTypeComponent implements OnInit {
     {
       field: "leaveCount", headerName: "Leave Count", index: 6,
       width: 200, editable: false, menuTabs: [], headerTooltip: 'Leave Count'
+    },
+    {
+      field: "actions", headerName: "actions", index: 9,
+      width: 200, editable: false, headerTooltip: 'actions', 
+      cellRendererFramework: LeaveTypeActionCellRendererComponent,
+      menuTabs: [], pinned: "right"
     }
-    // {
-    //   field: "actions", headerName: "actions", index: 9,
-    //   width: 200, editable: false, headerTooltip: 'actions', 
-    //   // cellRendererFramework: PatientActionRendererComponent,
-    //   menuTabs: [], pinned: "right"
-    // }
   ];
 
   ngOnInit() {
@@ -60,6 +63,11 @@ export class LeaveTypeComponent implements OnInit {
       leaveTypeCount: new FormControl("", [Validators.required, Validators.pattern(/^[.\d]+$/)])
     });
     this.getAllLeaveTypes();
+    this.homePageServices.data.subscribe(data => {
+      if(data != null){
+        this.getAllLeaveTypes();
+      }
+    });
   }
 
   griReadyEvent(params) {
