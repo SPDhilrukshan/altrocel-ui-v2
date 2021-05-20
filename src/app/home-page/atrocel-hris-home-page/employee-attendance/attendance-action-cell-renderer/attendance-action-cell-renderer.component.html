@@ -1,0 +1,29 @@
+<div class="row">
+    <!-- Edit Leave Type Data -->
+    <!-- <div class="action-buttons pl-1 pr-1" *ngIf="this.data.attendanceStatus == attendanceStatusRequested">
+        <a (click)="openModal(ConfirmationDeleteModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="Edit Leave Type Data">
+            <img src="../../../../../assets/images/hide-alert.png">
+        </a>
+    </div> -->
+</div>
+
+<ng-template #ConfirmationDeleteModal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Leave Type</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div class="row">
+            Are you sure you want to delete this attendance?
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="save-button" (click)="deleteAttendance()">Save</button>
+                <button class="cancel-button" (click)="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -32,6 +32,9 @@ import { EmployeeLeaveComponent } from '../home-page/atrocel-hris-home-page/empl
 import { MyTeamComponent } from './atrocel-hris-home-page/my-team/my-team.component';
 import { TeamAttendanceActionCellRendererComponent } from './atrocel-hris-home-page/my-team/team-attendance-action-cell-renderer/team-attendance-action-cell-renderer.component';
 import { TeamLeaveActionCellRendererComponent } from './atrocel-hris-home-page/my-team/team-leave-action-cell-renderer/team-leave-action-cell-renderer.component';
+import { LeaveTypeActionCellRendererComponent } from './atrocel-hris-home-page/leave-type/leave-type-action-cell-renderer/leave-type-action-cell-renderer.component';
+import { AttendanceActionCellRendererComponent } from './atrocel-hris-home-page/employee-attendance/attendance-action-cell-renderer/attendance-action-cell-renderer.component';
+import { ViewPayrollComponent } from './atrocel-hris-home-page/view-payroll/view-payroll.component';
 
 @NgModule({
   declarations: [    
@@ -47,7 +50,10 @@ import { TeamLeaveActionCellRendererComponent } from './atrocel-hris-home-page/m
     EmployeeLeaveComponent,
     MyTeamComponent,
     TeamAttendanceActionCellRendererComponent,
-    TeamLeaveActionCellRendererComponent
+    TeamLeaveActionCellRendererComponent,
+    LeaveTypeActionCellRendererComponent,
+    AttendanceActionCellRendererComponent,
+    ViewPayrollComponent
   ],
   imports: [
     CommonModule,

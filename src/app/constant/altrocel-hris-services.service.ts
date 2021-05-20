@@ -391,5 +391,20 @@ export class AltrocelServices {
       });
   
       return obs;
+    } 
+
+    makeEmployeeInactive(employeeId: any, status: string): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.EMPLOYEE_CONTROLLER + "/employee-update/active-status/employee-id/"+ employeeId +"/status/" + status).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
     }
 }

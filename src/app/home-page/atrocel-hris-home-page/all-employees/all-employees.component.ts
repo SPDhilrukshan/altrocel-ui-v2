@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GridOptions, SetLeftFeature } from 'ag-grid-community';
 import { AltrocelServices } from "../../../constant/altrocel-hris-services.service";
 import { AllEmployeesActionCellRendererComponent } from './all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
+import { AllEmployeesService } from './all-employees-service.service';
 
 @Component({
   selector: 'altrocel-all-employees',
@@ -82,6 +83,11 @@ export class AllEmployeesComponent implements OnInit {
       menuTabs: []
     },
     {
+      field: "activeStatus", headerName: "Active Status", index: 9,
+      width: 200, editable: false, headerTooltip: 'Active Status',
+      menuTabs: []
+    },
+    {
       field: "actions", headerName: "actions", index: 9,
       width: 200, editable: false, headerTooltip: 'actions', 
       cellRendererFramework: AllEmployeesActionCellRendererComponent,
@@ -90,7 +96,8 @@ export class AllEmployeesComponent implements OnInit {
   ];
 
   constructor(
-    private altrocelServices: AltrocelServices
+    private altrocelServices: AltrocelServices,
+    private allEmployeesService: AllEmployeesService
   ) { }
 
   ngOnInit() {
@@ -107,6 +114,12 @@ export class AllEmployeesComponent implements OnInit {
     });
 
     this.getAllEmployees();
+    this.allEmployeesService.data.subscribe(res => {
+      if(res != null){
+        this.getAllEmployees();
+        this.allEmployeesService.refreshGrid(null);
+      }
+    })
   }
   
   griReadyEvent(params) {

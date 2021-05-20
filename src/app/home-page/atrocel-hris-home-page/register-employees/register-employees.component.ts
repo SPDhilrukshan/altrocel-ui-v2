@@ -19,6 +19,7 @@ export class RegisterEmployeesComponent implements OnInit {
     private altrocelServices: AltrocelServices,
     private datePipe: DatePipe,
     private modalService: BsModalService,
+    public bsModalRef: BsModalRef 
     // @Inject(forwardRef(() => AllEmployeesComponent )) private allEmployeesComponent : AllEmployeesComponent 
   ) { }
 
@@ -275,5 +276,10 @@ export class RegisterEmployeesComponent implements OnInit {
 
   onDateChange(newDate: Date) {
     console.log(this.datePipe.transform(newDate, "yyyy-MM-dd HH:mm:ss"));
+  }
+
+  closeModalv2(){    
+    // this.AFTER_SAVE_PROTOCOL.emit();
+    this.bsModalRef.hide();
   }
 }
