@@ -1,12 +1,65 @@
-<div class="row pt-3">
-    <div class="col-lj-1 pl-3">
-        <button class="add-type-button col-12" (click)="openModal(ApplyLeaveModal)">Apply Leave</button>
-    </div>
+<div class="col-12" style="text-align: center;">
+    <label class="heading-text">Employee Leave</label>
 </div>
-<div class="row pl-3 pt-3">
-    <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
-        (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
-    </ag-grid-angular>
+<div class="row">
+    <div class="col-7">
+        <div class="row pt-3">
+            <div class="col-lj-1 pl-3">
+                <button class="add-type-button col-12" (click)="openModal(ApplyLeaveModal)">Apply Leave</button>
+            </div>
+        </div>
+        <div class="row pl-3 pt-3">
+            <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+                (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
+            </ag-grid-angular>
+        </div>
+    </div>
+
+    <div class="pl-1 pr-1 vl"></div>
+    <div class="col-4" *ngIf="employeeLeaveDashboardData">
+        <div class="row">
+            &nbsp;
+        </div>
+        
+        <div class="row pt-3">
+            <div class="modal-header" style="padding: 0rem 1rem">
+                <h4 class="modal-title pull-left">Employee Leave Information</h4>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-6">
+                <p>Total Leaves Allocated: </p>
+            </div>
+            <div class="col-6">
+               {{employeeLeaveDashboardData.totalLeavesAllocated}} days
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-6">
+                <p>Total Leaves Taken: </p>
+            </div>
+            <div class="col-6">
+                {{employeeLeaveDashboardData.totalLeavesTaken}} days
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-6">
+                <p>Total Leaves Remaining: </p>
+            </div>
+            <div class="col-6">
+                {{employeeLeaveDashboardData.totalLeavesRemaining}} days
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <ag-grid-angular style="width: 340px; height: 200px;" class="ag-theme-alpine" [columnDefs]="employeeLeaveColumnDefs"
+            (gridReady)="employeeLeaveGriReadyEvent($event)" [gridOptions]="employeeLeaveGridOptions">
+        </ag-grid-angular>
+        </div>
+    </div>
 </div>
 
 <ng-template #ApplyLeaveModal>
@@ -29,7 +82,7 @@
           </div>
         </div> -->
             <div class="row" *ngIf="selectedLeaveType">
-                <p class="col-6" style="font-weight:700;">Remaining Leave Count for current year:</p> 
+                <p class="col-6" style="font-weight:700;">Remaining Leave Count for current year:</p>
                 <p class="col-4 pl-0" style="text-align: left;">{{selectedLeaveType.remainingLeaveCountAnnum}} days</p>
             </div>
             <div class="row pb-2">
@@ -55,7 +108,8 @@
                     <label>Type: </label>
                 </div>
                 <div class="col-3">
-                    <select formControlName="leaveTypeId" class="form-control-sm form-control" (change)="getLeaveTypeById()">
+                    <select formControlName="leaveTypeId" class="form-control-sm form-control"
+                        (change)="getLeaveTypeById()">
                         <option value="">--Select--</option>
                         <option *ngFor="let value of leaveTypesForEmployee" [value]="value.leaveTypeId">
                             {{value.leaveType}}</option>

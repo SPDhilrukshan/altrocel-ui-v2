@@ -407,4 +407,20 @@ export class AltrocelServices {
   
       return obs;
     }
+
+    getLeaveDashboardData(employeeId: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/leave-dashboard/employee-id/"+ employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
 }

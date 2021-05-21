@@ -52,10 +52,31 @@ export class EmployeeLeaveComponent implements OnInit {
      }
    ];
 
+    //grid  
+    employeeLeaveGridOptions: GridOptions;
+    employeeLeaveGridApi: any;
+    employeeLeaveGridParams: any;
+    employeeLeaveGridColumnApi: any;
+    employeeLeaveGridData: any[] = [];
+
+   employeeLeaveColumnDefs = [
+    {
+      field: "leaveType", headerName: "Leave Type", index: 1,
+      width: 200, headerTooltip: 'Leave Type', pinned: "left",
+      menuTabs: []
+    },
+    {
+      field: "leaveCount", headerName: "Leave Count", index: 6,
+      width: 200, editable: false, menuTabs: [], headerTooltip: 'Leave Count', pinned: "left",
+    }
+  ];
+
    employeeData: any;
    leaveTypesForEmployee: any[] = [];
    selectedLeaveType: any
    applyLeaveForm: FormGroup;
+
+   employeeLeaveDashboardData: any;
 
    public modal: BsModalRef;
 
@@ -76,6 +97,7 @@ export class EmployeeLeaveComponent implements OnInit {
       leaveReason: new FormControl("", [Validators.required])
     });
     this.getLeaveTypesAssignedForEmployee();
+    this.getLeaveDashboardData();
   }
   
   griReadyEvent(params) {
@@ -84,6 +106,14 @@ export class EmployeeLeaveComponent implements OnInit {
     // params.api.sizeColumnsToFit();
     this.gridParams = params.data;
     this.gridApi.setRowData([]);
+  }
+   
+  employeeLeaveGriReadyEvent(params) {
+    this.employeeLeaveGridApi = params.api;
+    this.employeeLeaveGridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+    this.employeeLeaveGridParams = params.data;
+    this.employeeLeaveGridApi.setRowData([]);
   }
 
   getEmployeeLeaveDataForGrid(){
@@ -187,5 +217,28 @@ export class EmployeeLeaveComponent implements OnInit {
         this.selectedLeaveType = Object.assign(res);
       }
     })
+  }
+  
+  getLeaveDashboardData(){
+    this.altrocelServices.getLeaveDashboardData(this.employeeData.employeeId).subscribe(res => {
+      if(res){
+        this.employeeLeaveDashboardData = Object.assign(res);
+        this.employeeLeaveGridData = this.employeeLeaveDashboardData.remainingLeaveList
+        setTimeout(() => {
+          this.employeeLeaveGridApi.setRowData(this.employeeLeaveGridData);
+        }, 500);
+      }else{
+        setTimeout(() => {
+          this.employeeLeaveGridApi.setRowData([]);
+        }, 500);
+      }
+    }, error => {
+      console.log(error);
+      this.toastr.error('Failed to fetch Leave dashboard data', 'Error!', {
+        timeOut: 3000,
+        progressBar: true,
+        closeButton: true
+      });
+    });
   }
 }
