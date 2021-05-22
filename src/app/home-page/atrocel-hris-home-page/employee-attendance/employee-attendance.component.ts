@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
+// import {
+//   startOfDay,
+//   endOfDay,
+//   subDays,
+//   addDays,
+//   endOfMonth,
+//   isSameDay,
+//   isSameMonth,
+//   addHours
+// } from 'date-fns';
 import { Subject } from 'rxjs';
 // import { NgbModal } from '@ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView
-} from 'angular-calendar';
+// import {
+//   CalendarEvent,
+//   CalendarEventAction,
+//   CalendarEventTimesChangedEvent,
+//   CalendarView
+// } from 'angular-calendar';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -35,11 +35,11 @@ import { AttendanceActionCellRendererComponent } from './attendance-action-cell-
 })
 export class EmployeeAttendanceComponent implements OnInit {
 
-  view: CalendarView = CalendarView.Month;
+  // view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
-  CalendarView = CalendarView;
+  // CalendarView = CalendarView;
   refresh: Subject<any> = new Subject();
-  events: CalendarEvent[];
+  // events: CalendarEvent[];
   myDate: any;
   activeDayIsOpen: boolean = true;
   

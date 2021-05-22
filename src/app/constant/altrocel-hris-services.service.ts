@@ -437,4 +437,19 @@ export class AltrocelServices {
   
       return obs;
     }
+    
+    getLeaveReportData(startDate: any, endDate: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.LEAVE_TYPE_CONTROLLER + "/leave-report/date-range/start-date/"+ startDate +"/end-date/" + endDate).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }

@@ -22,8 +22,8 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { RegisterEmployeesComponent } from "../../app/home-page/atrocel-hris-home-page/register-employees/register-employees.component";
 import { AllEmployeesComponent } from './atrocel-hris-home-page/all-employees/all-employees.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+// import { CalendarModule, DateAdapter } from 'angular-calendar';
+// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { EmployeeAttendanceComponent } from './atrocel-hris-home-page/employee-attendance/employee-attendance.component';
 import { LeaveTypeComponent } from './atrocel-hris-home-page/leave-type/leave-type.component';
 import { AllEmployeesActionCellRendererComponent } from './atrocel-hris-home-page/all-employees/all-employees-action-cell-renderer/all-employees-action-cell-renderer.component';
@@ -36,6 +36,7 @@ import { LeaveTypeActionCellRendererComponent } from './atrocel-hris-home-page/l
 import { AttendanceActionCellRendererComponent } from './atrocel-hris-home-page/employee-attendance/attendance-action-cell-renderer/attendance-action-cell-renderer.component';
 import { ViewPayrollComponent } from './atrocel-hris-home-page/view-payroll/view-payroll.component';
 import { ReportComponent } from './atrocel-hris-home-page/report/report.component';
+import { LeaveReportsComponent } from './atrocel-hris-home-page/leave-reports/leave-reports.component';
 
 @NgModule({
   declarations: [    
@@ -55,7 +56,8 @@ import { ReportComponent } from './atrocel-hris-home-page/report/report.componen
     LeaveTypeActionCellRendererComponent,
     AttendanceActionCellRendererComponent,
     ViewPayrollComponent,
-    ReportComponent
+    ReportComponent,
+    LeaveReportsComponent
   ],
   imports: [
     CommonModule,
@@ -71,10 +73,10 @@ import { ReportComponent } from './atrocel-hris-home-page/report/report.componen
     TooltipModule.forRoot(),
     OwlNativeDateTimeModule,
     OwlDateTimeModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+    // CalendarModule.forRoot({
+    //   provide: DateAdapter,
+    //   useFactory: adapterFactory,
+    // }),
     NgxMaterialTimepickerModule
     // DatetimePopupModule
     
