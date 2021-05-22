@@ -35,10 +35,10 @@
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'MY TEAM', 'sidebar-text' : tabName != 'MY TEAM'}"> 
                 My Team </label>
         </div>
-        <!--<div *ngIf="userType == 'MANAGER' || userType == 'ADMIN'" [ngClass]="{'side-nav-row-selected' : tabName == 'REPORTS', 'side-nav-row' : tabName != 'REPORTS'}" (click)="tabClicked('REPORTS')">
-            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'REPORTS', 'sidebar-text' : tabName != 'REPORTS'}">
-                 REPORTS</label>
-        </div> -->
+        <div [ngClass]="{'side-nav-row-selected' : tabName == 'ATTENDANCE REPORTS', 'side-nav-row' : tabName != 'ATTENDANCE REPORTS'}" (click)="tabClicked('ATTENDANCE REPORTS')">
+            <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ATTENDANCE REPORTS', 'sidebar-text' : tabName != 'ATTENDANCE REPORTS'}">
+                 Attendance Reports</label>
+        </div>
 
     </ng-sidebar>
 
@@ -61,6 +61,7 @@
             <altrocel-register-employees *ngIf="tabName == 'CREATE EMPLOYEES'"></altrocel-register-employees>
             <altrocel-employee-leave *ngIf="tabName == 'APPLY LEAVE'"></altrocel-employee-leave>
             <altrocel-my-team *ngIf="tabName == 'MY TEAM'"></altrocel-my-team>
+            <altrocel-report *ngIf="tabName == 'ATTENDANCE REPORTS'"></altrocel-report>
         </div>
 
     </div>
