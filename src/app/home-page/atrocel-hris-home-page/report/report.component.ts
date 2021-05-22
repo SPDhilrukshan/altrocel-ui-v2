@@ -131,11 +131,7 @@ export class ReportComponent implements OnInit {
     this.altrocelServices.getAttendanceReportData(attendanceStartDate,attendanceEndDate).subscribe(res => {
       if(res){
         this.attendanceList = Object.assign(res);        
-        this.totalAttendance = 0; 
-        this.attendanceList.forEach(element => {
-          this.totalAttendance += +element.hoursWorked;
-        }); 
-        this.totalAttendance = this.totalAttendance / 8;
+        this.calculateAttendanceDaysWorked(this.attendanceList);
         this.gridApi.setRowData(this.attendanceList);    
       }else{
         this.gridApi.setRowData([]);
