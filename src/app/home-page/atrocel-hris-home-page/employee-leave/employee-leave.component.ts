@@ -169,6 +169,7 @@ export class EmployeeLeaveComponent implements OnInit {
         this.selectedLeaveType = null;
         this.closeModal();
         this.getEmployeeLeaveDataForGrid();
+        this.getLeaveDashboardData();
       }
     }, error => {
       console.log(error);

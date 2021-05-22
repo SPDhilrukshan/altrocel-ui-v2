@@ -1,0 +1,63 @@
+<div class="col-12 pr-3">
+    <div class="row">
+        <label class="heading-text">Attendance Reports</label>        
+    </div>
+    <div class="row"> </div>
+
+    <div [formGroup]="attendanceSearchForm" class="row">
+
+        <div class="col-2">
+            <div class="row">         
+                <p><b>Attendance:</b></p>  
+                <p *ngIf="totalAttendance">{{totalAttendance}} Days</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <p *ngIf="periodDateRange != ''"><b>Period:</b></p>
+                <p> &nbsp;{{periodDateRange}}</p>
+            </div>
+        </div>        
+    
+        <div class="col-5">
+            <div class="row">                
+                <div class="col-6">
+                    <input type="text" placeholder="Search with Attendance Date" [selectMode]="range" [rangeSeparator]="'to'" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
+                         formControlName="attendanceDaterange" class="form-control-sm form-control" (dateTimeInput)="searchAttendanceReport()">
+                         <span [owlDateTimeTrigger]="dt1"><i class="fa fa-calender"></i></span>
+                         <owl-date-time #dt1></owl-date-time>
+                </div>
+                <div class="col-4">
+                    <button class="save-button" (click)="getTodaysAttendance()">Today Attendance</button>
+                </div>
+                <div class="col-2 pl-3">
+                    <div class="col-md-2 pr-0">
+                        <div class="nova-form-control">
+                          <div class="nova-toggle-switch">
+                            <label class="nova-switch">
+                              <input checked="" type="checkbox" class="form-control-sm form-control"  formControlName="filterByApproved"
+                                (change)="filterAttendanceByApproved()">
+                              <span class="nova-slider nova-round"></span>
+                            </label>
+                            <span class="toggle-text">Approved Attendance</span>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    
+
+    <ag-grid-angular 
+                style="width: 1303px; height: 395px;padding-top: 10px;"
+                class="ag-theme-alpine"                
+                [columnDefs]="columnDefs" 
+                (gridReady)="griReadyEvent($event)"
+                [gridOptions]="gridOptions"
+                >
+            </ag-grid-angular>
+</div>

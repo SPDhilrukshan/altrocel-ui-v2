@@ -423,4 +423,18 @@ export class AltrocelServices {
       return obs;
     }
 
+    getAttendanceReportData(startDate: any, endDate: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.ATTENDANCE_CONTROLLER + "/attendance-report/date-range/start-date/"+ startDate +"/end-date/" + endDate).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
 }
