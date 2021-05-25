@@ -451,5 +451,35 @@ export class AltrocelServices {
       });
   
       return obs;
+    } 
+
+    getDashboardDataByEmployeeId(employeeId: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.PAYROLL_INFO_CONTROLLER + "/payroll-dashboard/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
+    }
+
+    getPayrollDataByEmployeeId(employeeId: any): Observable<any> {
+      let obs = new Observable<any>(obs => {
+        this.http.get(Constants.SERVER_URL + Constants.PAYROLL_INFO_CONTROLLER + "/payroll-grid/employee-id/" + employeeId).subscribe(res => {            
+            obs.next(res);
+            obs.complete();
+        }, error => {
+          obs.error(error);
+          console.log(error)
+          obs.complete();
+        });
+      });
+  
+      return obs;
     }
 }
