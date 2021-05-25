@@ -11,7 +11,7 @@
 <ng-template #OpenPayrollModal>
     <div id="payroll-sheet">
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Payroll details</h4>
+            <h4 class="modal-title pull-left">Pay Sheet</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -42,7 +42,7 @@
                         <p>Allowance: </p>
                     </div>
                     <div class="col-6">
-                        {{employeePayrollData.empAllowanceFinal}}
+                        LKR {{employeePayrollData.empAllowanceFinal}}
                     </div>
                 </div>
     
@@ -51,7 +51,7 @@
                         <p>EPF deducted: </p>
                     </div>
                     <div class="col-6">
-                        {{employeePayrollData.empEpfFinal}}
+                        LKR {{epf}}
                     </div>
                 </div>
                 
@@ -60,7 +60,7 @@
                         <p>ETF deducted: </p>
                     </div>
                     <div class="col-6">
-                        {{employeePayrollData.empEtfFinal}}
+                        LKR {{etf}}
                     </div>
                 </div>
                 
@@ -69,16 +69,16 @@
                         <p>Travelling Allowance: </p>
                     </div>
                     <div class="col-6">
-                        {{employeePayrollData.empTravellingAllowanceFinal}}
+                        LKR {{employeePayrollData.empTravellingAllowanceFinal}}
                     </div>
                 </div>
-                
-                <div class="row pt-1">
-                    <div class="col-6" style="font-weight: 700;">
+                <hr>
+                <div class="row pt-1" style="font-weight: 700;font-size: larger;">
+                    <div class="col-6">
                         <p>Final Salary: </p>
                     </div>
                     <div class="col-6">
-                        {{employeePayrollData.empSalaryFinal}}
+                        LKR {{salary}}
                     </div>
                 </div>
                 <div class="row">
