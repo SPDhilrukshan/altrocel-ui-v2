@@ -10,15 +10,15 @@
         <div class="col-md-3">
             <br>
             <label style="width: 257.99306px;">Employee name: </label>
-            <input type="text" formControlName="employeeName" style="height: 35.99306px;width: 257.99306px;">
+            <input type="text" formControlName="employeeName" (input)="searchEmployee()" style="height: 35.99306px;width: 257.99306px;">
         </div>
     </div>
 
     <div class="row" style="margin-top: 35px;">
-        <div class="col-50">
+        <!-- <div class="col-50">
             <button class="save-button" (click)="searchEmployee()" style="margin-bottom: 10px; margin-right: 5px;" [disabled]="!employeeSearchForm.valid">Search</button>
-        </div>
-        <div class="col-50">
+        </div> -->
+        <div class="col-50 mt-2">
             <button class="cancel-button" (click)="cancelFormSearchEmployee()">Cancel</button>
         </div>
     </div>
