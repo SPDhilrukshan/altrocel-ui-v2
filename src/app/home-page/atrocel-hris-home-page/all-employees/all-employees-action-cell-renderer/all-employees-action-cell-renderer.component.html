@@ -182,7 +182,7 @@
 
 <ng-template #EmployeeLeaveAssignModal>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Employee Payroll Info</h4>
+        <h4 class="modal-title pull-left">Employee Leave Management</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal(); clearEmployeeLeaveForm()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -225,7 +225,7 @@
             </div>
             <div class="row pl-2">
                 <ag-grid-angular 
-                    style="width: 773px; height: 400px;" 
+                    style="width: 773px; height: 250px;" 
                     class="ag-theme-alpine"
                     [columnDefs]="columnDefsForLeaveAssignGrid"
                     (gridReady)="gridReadyEvent($event)" 
