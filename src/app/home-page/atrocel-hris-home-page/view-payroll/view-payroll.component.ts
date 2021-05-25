@@ -32,8 +32,8 @@ export class ViewPayrollComponent implements OnInit {
        width: 200, editable: false, menuTabs: [], headerTooltip: 'Calculated Date/Time', pinned: "left",
      },
      {
-       field: "salaryDate", headerName: "Salary Date", index: 6,
-       width: 150, editable: false, menuTabs: [], headerTooltip: 'Salary Date', pinned: "left",
+       field: "salaryDate", headerName: "Salary Month", index: 6,
+       width: 150, editable: false, menuTabs: [], headerTooltip: 'Salary Month', pinned: "left",
      },
      {
        field: "actions", headerName: "actions", index: 9,

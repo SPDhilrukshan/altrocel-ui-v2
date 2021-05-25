@@ -35,12 +35,17 @@ export class PayrollActionCellRendererComponent implements OnInit, ICellRenderer
     return false;
   }
 
+  epf: any;
+  etf: any;salary: any; allowance: any; travlAllowance: any;
   agInit(params: any): void {      
     this.params = params;
     this.data=this.params.data;
     this.gridApi = params.api;
     this.employeePayrollData = this.data.employeePayroll;
     this.employeeData = this.data.employee;
+    this.salary = Math.floor(this.employeePayrollData.empSalaryFinal*100)/100;
+    this.epf = Math.floor(this.employeePayrollData.empEpfFinal*100)/100;
+    this.etf = Math.floor(this.employeePayrollData.empEtfFinal*100)/100;
   }
   
   openModal(ModalRef: any){
