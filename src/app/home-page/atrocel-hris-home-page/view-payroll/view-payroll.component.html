@@ -1,1 +1,39 @@
+<div class="col-12" style="text-align: center;">
+    <label class="heading-text">Employee Payroll</label>
+</div>
+<div class="row">
+    <div class="col-7">
 
+        <div class="row pl-3 pt-3">
+            <div class="modal-header" style="padding: 0rem 1rem">
+                <h4 class="modal-title pull-left">Payroll Data</h4>
+            </div>
+        </div>
+
+        <div class="row pl-3 pt-3">
+            <ag-grid-angular style="width: 840px; height: 400px;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+                (gridReady)="griReadyEvent($event)" [gridOptions]="gridOptions">
+            </ag-grid-angular>
+        </div>
+
+    </div>
+
+    <div class="pl-1 pr-1 vl"></div>
+    <div class="col-4" *ngIf="employeePayrollDashboardData">
+        <div class="row">
+            &nbsp;
+        </div>
+        
+        <div class="row pt-3">
+            <div class="modal-header" style="padding: 0rem 1rem">
+                <h4 class="modal-title pull-left">Employee Payroll Information</h4>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <ag-grid-angular style="width: 420px; height: 400px;" class="ag-theme-alpine" [columnDefs]="employeePayrollInfoColumnDefs"
+            (gridReady)="employeePayrollInfoGriReadyEvent($event)" [gridOptions]="employeePayrollInfoGridOptions">
+        </ag-grid-angular>
+        </div>
+    </div>
+</div>

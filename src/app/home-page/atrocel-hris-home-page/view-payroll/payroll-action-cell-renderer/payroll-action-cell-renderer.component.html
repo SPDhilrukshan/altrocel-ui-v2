@@ -1,0 +1,92 @@
+<div class="row">
+    <!-- add employee credentials -->
+    <div class="action-buttons pl-1 pr-1">
+        <a (click)="openModal(OpenPayrollModal)" data-toggle="tooltip" container="body"
+            containerClass="custom-tooltip-class" tooltip="View and Download Salary details">
+            <img src="../../../../../assets/images/discharge-completed.png">
+        </a>
+    </div>
+</div>
+
+<ng-template #OpenPayrollModal>
+    <div id="payroll-sheet">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Payroll details</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" *ngIf="data && employeeData && employeePayrollData">
+            <div>
+    
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>Employee Name: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeeData.firstName+ " " + employeeData.lastName}}
+                    </div>
+                </div>
+    
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>Designation: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeeData.jobTitle}}
+                    </div>
+                </div>
+    
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>Allowance: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeePayrollData.empAllowanceFinal}}
+                    </div>
+                </div>
+    
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>EPF deducted: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeePayrollData.empEpfFinal}}
+                    </div>
+                </div>
+                
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>ETF deducted: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeePayrollData.empEtfFinal}}
+                    </div>
+                </div>
+                
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>Travelling Allowance: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeePayrollData.empTravellingAllowanceFinal}}
+                    </div>
+                </div>
+                
+                <div class="row pt-1">
+                    <div class="col-6" style="font-weight: 700;">
+                        <p>Final Salary: </p>
+                    </div>
+                    <div class="col-6">
+                        {{employeePayrollData.empSalaryFinal}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="save-button" (click)="printPdf()">Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
