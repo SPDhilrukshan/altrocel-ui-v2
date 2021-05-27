@@ -10,7 +10,7 @@
     <ng-sidebar mode="slide" [(opened)]="opened" ng-mouseover="openSideBar()" ng-mouseleave="closeSidebar"
         animate="true" autoCollapseWidth=100 style="position: fixed;">
 
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'CREATE EMPLOYEES', 'side-nav-row' : tabName != 'CREATE EMPLOYEES'}" (click)="tabClicked('CREATE EMPLOYEES')">
+        <div *ngIf="userType == 'HR executive' || userName == 'admin'" [ngClass]="{'side-nav-row-selected' : tabName == 'CREATE EMPLOYEES', 'side-nav-row' : tabName != 'CREATE EMPLOYEES'}" (click)="tabClicked('CREATE EMPLOYEES')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'CREATE EMPLOYEES', 'sidebar-text' : tabName != 'CREATE EMPLOYEES'}"> 
                 Register Employees
              </label>
@@ -19,11 +19,11 @@
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ATTENDANCE', 'sidebar-text' : tabName != 'ATTENDANCE'}"> 
                 Attendance</label>
         </div>
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'ALL EMPLOYEES', 'side-nav-row' : tabName != 'ALL EMPLOYEES'}" (click)="tabClicked('ALL EMPLOYEES')">
+        <div *ngIf="userType == 'HR executive' || userName == 'admin'" [ngClass]="{'side-nav-row-selected' : tabName == 'ALL EMPLOYEES', 'side-nav-row' : tabName != 'ALL EMPLOYEES'}" (click)="tabClicked('ALL EMPLOYEES')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ALL EMPLOYEES', 'sidebar-text' : tabName != 'ALL EMPLOYEES'}">
                  Employees</label>
         </div>
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'LEAVE TYPE', 'side-nav-row' : tabName != 'LEAVE TYPE'}" (click)="tabClicked('LEAVE TYPE')">
+        <div *ngIf="userType == 'HR executive' || userName == 'admin'" [ngClass]="{'side-nav-row-selected' : tabName == 'LEAVE TYPE', 'side-nav-row' : tabName != 'LEAVE TYPE'}" (click)="tabClicked('LEAVE TYPE')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'LEAVE TYPE', 'sidebar-text' : tabName != 'LEAVE TYPE'}">
                  Leave Type</label>
         </div>
@@ -35,11 +35,11 @@
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'MY TEAM', 'sidebar-text' : tabName != 'MY TEAM'}"> 
                 My Team </label>
         </div>
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'ATTENDANCE REPORTS', 'side-nav-row' : tabName != 'ATTENDANCE REPORTS'}" (click)="tabClicked('ATTENDANCE REPORTS')">
+        <div *ngIf="userType == 'HR Manager' || userName == 'admin'" [ngClass]="{'side-nav-row-selected' : tabName == 'ATTENDANCE REPORTS', 'side-nav-row' : tabName != 'ATTENDANCE REPORTS'}" (click)="tabClicked('ATTENDANCE REPORTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'ATTENDANCE REPORTS', 'sidebar-text' : tabName != 'ATTENDANCE REPORTS'}">
                  Attendance Reports</label>
         </div>
-        <div [ngClass]="{'side-nav-row-selected' : tabName == 'LEAVE REPORTS', 'side-nav-row' : tabName != 'LEAVE REPORTS'}" (click)="tabClicked('LEAVE REPORTS')">
+        <div *ngIf="userType == 'HR Manager' || userName == 'admin'" [ngClass]="{'side-nav-row-selected' : tabName == 'LEAVE REPORTS', 'side-nav-row' : tabName != 'LEAVE REPORTS'}" (click)="tabClicked('LEAVE REPORTS')">
             <label [ngClass]="{'sidebar-text-selected ' : tabName == 'LEAVE REPORTS', 'sidebar-text' : tabName != 'LEAVE REPORTS'}">
                  Leave Reports</label>
         </div>
