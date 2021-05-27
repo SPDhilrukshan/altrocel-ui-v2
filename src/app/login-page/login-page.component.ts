@@ -60,7 +60,7 @@ export class LoginPageComponent implements OnInit {
         // adminUser.staffType = 'ADMIN';
         // adminUser.firstName = 'admin';
         // adminUser.lastName = 'admin';
-        // localStorage.setItem("loggedUserName", username);
+        localStorage.setItem("loggedUserName", username);
         // localStorage.setItem("loggedUserData", JSON.stringify(adminUser));        
         this.loggedIn.emit();
         this.router.navigateByUrl("/dashboard");
